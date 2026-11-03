@@ -8,6 +8,7 @@ const SPIN_RAD_PER_SEC = 0.6;
 function disposeTree(root) {
   root.traverse((o) => {
     o.geometry?.dispose();
+    o.skeleton?.dispose(); // skinned animal models hold a bone texture
     for (const m of [].concat(o.material ?? [])) {
       for (const v of Object.values(m)) if (v?.isTexture) v.dispose();
       m.dispose();
@@ -49,7 +50,8 @@ export function createPixelView(canvas) {
       return;
     }
     const model = gltf.scene;
-    const box = new THREE.Box3().setFromObject(model);
+    model.updateMatrixWorld(true);
+    const box = new THREE.Box3().setFromObject(model, true); // precise: skinned animals report absurd bone-based boxes otherwise
     const size = box.getSize(new THREE.Vector3());
     model.position.sub(box.getCenter(new THREE.Vector3()));
     const next = new THREE.Group();

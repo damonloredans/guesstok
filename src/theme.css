@@ -216,3 +216,4 @@ main {
   .hud-view::after { animation: none; display: none; }
   .hud-guess { animation: none; }
 }
+.hud-fatal { padding: var(--gap); color: var(--ink); font-size: var(--text-m); text-align: center; }
