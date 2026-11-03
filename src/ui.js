@@ -123,8 +123,10 @@ export function createUi(root, bus) {
     // multiplier > 1 means the viewer has gifts running: shown next to their guess
     floatGuess(user, text, multiplier = 1) {
       const g = el('div', 'hud-guess');
-      g.append(el('span', 'hud-guess-user', user), el('span', 'hud-guess-text', text));
-      if (multiplier > 1) g.append(el('span', 'hud-guess-mult', `x${multiplier}`));
+      const head = el('div', 'hud-guess-head');
+      head.append(el('span', 'hud-guess-user', user));
+      if (multiplier > 1) head.append(el('span', 'hud-guess-mult', `x${multiplier}`));
+      g.append(head, el('div', 'hud-guess-text', text));
       g.style.setProperty('--x', `${between(2, 45)}%`);
       g.style.setProperty('--y', `${between(6, 80)}%`);
       g.style.animationDuration = `${GUESS_MS}ms`;

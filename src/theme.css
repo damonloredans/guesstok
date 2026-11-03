@@ -150,18 +150,26 @@ main {
   max-width: 55%;
   box-sizing: border-box;
   padding: 0 var(--gap-s);
-  font-size: var(--text-s);
   background: var(--bg-panel);
   border-left: var(--line-w) solid var(--line-strong);
   text-shadow: var(--guess-shadow);
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
   animation: hud-guess linear forwards; /* duration set from ui.js so it matches the removal timer */
 }
+/* the viewer's name is a small line above the comment, so a long name can never cut the comment off */
+.hud-guess-head { display: flex; gap: var(--gap-s); font-size: max(8px, 2.4cqw); line-height: 1.2; } /* smaller than the 11px floor on purpose: the comment is what matters */
 .hud-guess-user { color: var(--accent); }
-.hud-guess-user::after { content: ": "; }
-.hud-guess-mult { margin-left: var(--gap-s); font-weight: 700; color: var(--accent); }
+.hud-guess-head .hud-guess-user { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hud-guess-text { /* wraps to up to 3 lines instead of being clipped on one */
+  font-size: var(--text-s);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.hud-guess-mult { flex: none; font-weight: 700; color: var(--accent); }
 @keyframes hud-guess {
   0% { opacity: 0; transform: translateY(0.8em) scale(0.9); }
   12%, 70% { opacity: 1; transform: none; }

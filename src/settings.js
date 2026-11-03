@@ -13,7 +13,7 @@ export default {
   zoomTier: 'medium',
   zoom: 2.5, // camera zoom in a zoom round, until the reveal
   // Likes make the item spin faster for a moment.
-  spin: { base: 0.6, perLike: 0.05, max: 8, decaySeconds: 3 }, // radians per second
+  spin: { base: 0.6, perLike: 0.4, max: 10, decaySeconds: 2 }, // radians per second; one tap adds perLike, which fades over decaySeconds
   // Sound. rootHz is the note the sound effects are built around: set it to your music's key note so they match.
   audio: { bgmUrl: 'audio/bgm.mp3', bgmVolume: 0.25, sfxVolume: 0.5, rootHz: 440 },
 };
