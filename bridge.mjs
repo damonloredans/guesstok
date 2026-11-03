@@ -26,7 +26,11 @@ http
     res.writeHead(200, { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache', 'Access-Control-Allow-Origin': '*' });
     res.write(': connected\n\n');
     clients.add(res);
-    req.on('close', () => clients.delete(res));
+    console.log(`bridge: a game window connected (${clients.size} open)`);
+    req.on('close', () => {
+      clients.delete(res);
+      console.log(`bridge: a game window disconnected (${clients.size} open)`);
+    });
   })
   .listen(PORT, '127.0.0.1', () => console.log(`bridge: serving events at http://localhost:${PORT}/events`));
 setInterval(() => { for (const res of clients) res.write(': keepalive\n\n'); }, KEEPALIVE_MS);
@@ -48,7 +52,9 @@ function connect() {
 
   connection.on(WebcastEvent.CHAT, (d) => {
     const user = d.user?.uniqueId;
-    if (user && d.comment) send({ type: 'guess', user, text: d.comment });
+    if (!user || !d.comment) return;
+    console.log(`bridge: chat @${user}: ${d.comment}`);
+    send({ type: 'guess', user, text: d.comment });
   });
   connection.on(WebcastEvent.LIKE, (d) => {
     const user = d.user?.uniqueId;
@@ -66,7 +72,9 @@ function connect() {
     } else gifts = d.repeatCount || 1;
     // a gift adds one multiplier point per coin it costs: a rose 1, a finger heart 5
     const coins = d.giftDetails?.diamondCount > 0 ? d.giftDetails.diamondCount : 1;
-    if (gifts > 0) send({ type: 'gift', user, count: gifts * coins });
+    if (gifts <= 0) return;
+    console.log(`bridge: gift from @${user}: ${gifts} x ${coins} coin(s)`);
+    send({ type: 'gift', user, count: gifts * coins });
   });
 
   connection.on(ControlEvent.ERROR, ({ info }) => console.error('bridge: error:', info));

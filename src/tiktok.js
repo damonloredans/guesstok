@@ -12,7 +12,10 @@ export function connectTikTok(bus, url) {
       console.error('bad message from the bridge', err);
     }
   };
-  source.onopen = () => console.info('connected to the TikTok bridge');
-  source.onerror = () => console.warn(`cannot reach the TikTok bridge at ${url}: is "npm run bridge" running?`);
+  // the window title shows the state (in the taskbar, not on the stream)
+  const title = (state) => { document.title = `guesstok - TikTok bridge ${state}`; };
+  title('connecting');
+  source.onopen = () => { title('connected'); console.info('connected to the TikTok bridge'); };
+  source.onerror = () => { title('NOT connected'); console.warn(`cannot reach the TikTok bridge at ${url}: is "npm run bridge" running?`); };
   return source;
 }
