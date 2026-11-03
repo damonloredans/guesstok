@@ -4,7 +4,11 @@ A guessing game for TikTok Live: a 3D item starts as a very pixelated picture an
 
 ## Run
 
-No install needed beyond Node:
+You need Node. Install the one dependency (used only by the TikTok bridge) once:
+
+    npm install
+
+Then start the game's web server:
 
     npm start
 
@@ -14,11 +18,26 @@ The round number keeps counting across page reloads (it is saved in the browser)
 
 `npm test` runs the unit tests.
 
+## Connect to a TikTok LIVE
+
+1. Go live on TikTok.
+2. In one terminal, start the bridge with your TikTok name (the name in `tiktok.com/@yourname/live`):
+
+       npm run bridge -- yourname
+
+   Wait for `connected to @yourname's live`. The bridge only works while the stream is live, and keeps retrying every 10 seconds if it is not.
+3. In another terminal run `npm start`, then open `http://localhost:8080/?tiktok=1`.
+4. Show that browser window on your stream, using window capture in TikTok LIVE Studio or OBS.
+
+Chat comments become guesses, gifts add to the multiplier (by coin value), and likes spin the item. Viewers appear by their TikTok `@name`.
+
+The bridge uses `tiktok-live-connector`, which is unofficial: it can stop working when TikTok changes something, and it only reads, it never sends anything to TikTok. It reaches TikTok through a third-party signing service run by its authors. Like events are not always sent on big streams. You can try it on any live stream, not just your own, by giving the bridge that streamer's name.
+
 ## How a round plays
 
 - 45 seconds, sharpening every 5 seconds (9 steps). The first correct guess ends the round and wins 9 points down to 1, depending on how early it is, times the winner's gift multiplier. The answer stays up for 3 seconds.
 - Difficulty follows a loop of 10 rounds (easy x4, medium x1, easy x2, medium x2, hard x1), then a zoom round: the item stays zoomed in until someone answers or time runs out, then pulls back.
-- Likes make the item spin faster for a moment. Each gift adds +1 to the sender's multiplier for 30 seconds; a notice appears on screen and the multiplier shows next to their guesses.
+- Likes make the item spin faster for a moment. A gift adds +1 to the sender's multiplier for 30 seconds for every coin it costs: a rose (1 coin) makes them x2, a finger heart (5 coins) makes them x6. The multiplier stops at `maxMultiplier` (100) in `src/settings.js`. A notice appears on screen and the multiplier shows next to their guesses.
 - The leaderboard resets every 24 hours.
 
 Every number above lives in `src/settings.js`, including the difficulty pattern.

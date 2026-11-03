@@ -4,6 +4,7 @@ export default {
   stages: 9, // roundSeconds / stageSeconds
   pointsByStage: [9, 8, 7, 6, 5, 4, 3, 2, 1],
   giftSeconds: 30,
+  maxMultiplier: 100, // a gift adds +1 per coin it costs (a rose 1, a finger heart 5); the multiplier stops here
   pauseSeconds: 3, // how long the answer stays up before the next round
   leaderboardResetHour: 0,
   pixelWidths: [8, 12, 16, 24, 32, 48, 72, 112, 192], // render width per stage, one entry per stage

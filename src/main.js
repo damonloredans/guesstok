@@ -6,6 +6,7 @@ import { createLeaderboard, browserStore } from './leaderboard.js';
 import { createPixelView } from './pixel.js';
 import { createUi } from './ui.js';
 import { createAudio } from './audio.js';
+import { connectTikTok } from './tiktok.js';
 
 const BOARD_ROWS = 5;
 const TICK_MS = 100;
@@ -15,7 +16,8 @@ const FAILS_BEFORE_WAIT = 5; // after this many failed loads in a row, wait betw
 const FAIL_WAIT_MS = 1000;
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-const isCount = (n) => Number.isInteger(n) && n > 0;
+const MAX_COUNT = 1000; // a bad payload cannot freeze the page or hand out a huge multiplier
+const isCount = (n) => Number.isInteger(n) && n > 0 && n <= MAX_COUNT;
 const str = (s, max) => (typeof s === 'string' ? s.trim().slice(0, max) : '');
 // Wraps a handler so one throwing listener cannot affect the others or the loop.
 const safe = (fn) => (arg) => {
@@ -48,6 +50,10 @@ if (!Array.isArray(items) || !items.length) {
   throw new Error('no items');
 }
 
+// ?tiktok=1 reads a live stream through the bridge (npm run bridge -- yourusername); ?tiktok=<url> uses another address
+const tiktok = new URLSearchParams(location.search).get('tiktok');
+if (tiktok) connectTikTok(bus, tiktok === '1' ? 'http://localhost:8081/events' : tiktok);
+
 const view = createPixelView(ui.stage);
 const audio = createAudio();
 const picker = createPicker(items);
@@ -73,9 +79,9 @@ bus.on('like', safe((e) => {
 }));
 bus.on('gift', safe((e) => {
   const user = str(e?.user, MAX_USER);
-  if (!user || !isCount(e?.count)) return;
+  if (!user || !Number.isInteger(e?.count) || e.count <= 0) return;
   const now = Date.now();
-  giftBook.add(user, e.count, now);
+  giftBook.add(user, Math.min(e.count, MAX_COUNT), now); // a big gift is worth a lot, but a bad payload cannot freeze the page
   ui.showGift(user, giftBook.multiplier(user, now), settings.giftSeconds);
   audio.gift();
 }));

@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { pointsFor, createGiftBook } from '../src/score.js';
+import settings from '../src/settings.js';
 
 test('points are 9 down to 1 by stage times the multiplier', () => {
   assert.equal(pointsFor(0, 1), 9);
@@ -32,6 +33,15 @@ test('gift count adds that many', () => {
   const book = createGiftBook();
   book.add('ann', 4, 0);
   assert.equal(book.multiplier('ann', 0), 5);
+});
+
+test('a 5-coin gift adds 5, and the multiplier stops at the maximum', () => {
+  const book = createGiftBook();
+  book.add('ann', 5, 0);
+  assert.equal(book.multiplier('ann', 0), 6);
+  book.add('ann', 1000, 0);
+  assert.equal(book.multiplier('ann', 0), settings.maxMultiplier);
+  assert.equal(book.multiplier('ann', 30000), 1);
 });
 
 test('gifts belong to the sender only', () => {

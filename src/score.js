@@ -19,6 +19,7 @@ export function createGiftBook() {
       for (let i = 0; i < count; i++) kept.push(now);
       if (kept.length) gifts.set(user, kept);
     },
-    multiplier: (user, now) => 1 + live(user, now).length,
+    // each gift unit adds 1; capped so a big gift cannot make one guess worth the whole leaderboard
+    multiplier: (user, now) => Math.min(settings.maxMultiplier, 1 + live(user, now).length),
   };
 }

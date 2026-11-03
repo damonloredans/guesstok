@@ -5,6 +5,10 @@
   "type": "module",
   "scripts": {
     "test": "node --test",
-    "start": "npx http-server -p 8080 -c-1"
+    "start": "npx http-server -p 8080 -c-1",
+    "bridge": "node bridge.mjs"
+  },
+  "dependencies": {
+    "tiktok-live-connector": "^2.5.0"
   }
 }

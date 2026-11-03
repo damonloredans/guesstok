@@ -104,7 +104,7 @@ export function createUi(root, bus) {
       };
       help.replaceChildren(
         row('Chat', 'type your guess'),
-        row('Gift', `+1 multiplier for ${giftSeconds}s`),
+        row('Gift', `+1 multiplier per coin, ${giftSeconds}s`),
         row('Tap', 'spin the item faster'),
       );
     },
@@ -183,6 +183,10 @@ function devPanel(bus) {
   gift.type = 'button';
   gift.addEventListener('click', () => bus.emit('gift', { user: user.value, count: 1 }));
 
-  panel.append(userLabel, textLabel, like, gift);
+  const bigGift = el('button', '', 'Gift 5 coins'); // like a finger heart
+  bigGift.type = 'button';
+  bigGift.addEventListener('click', () => bus.emit('gift', { user: user.value, count: 5 }));
+
+  panel.append(userLabel, textLabel, like, gift, bigGift);
   return panel;
 }
