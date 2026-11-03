@@ -35,6 +35,7 @@ function fatal(message) {
 }
 
 const refreshBoard = () => ui.showBoard(leaderboard.top(BOARD_ROWS, Date.now()));
+ui.showHelp(settings.giftSeconds);
 
 let items = [];
 try {
@@ -104,11 +105,16 @@ async function playRound(roundNumber) {
   if (zoom) audio.zoomStart();
   live = { round, item, startedAt };
 
+  const endsAt = startedAt + settings.roundSeconds * 1000;
+  const showTimer = (now) => ui.setTimer(Math.max(0, Math.ceil((endsAt - now) / 1000)));
+  showTimer(startedAt);
   let shown = 0;
   while (!round.isOver(Date.now())) {
     await sleep(TICK_MS);
     try {
-      const stage = round.stage(Date.now());
+      const now = Date.now();
+      showTimer(now);
+      const stage = round.stage(now);
       if (stage !== shown) {
         shown = stage;
         audio.sharpen();
@@ -116,6 +122,7 @@ async function playRound(roundNumber) {
     } catch (err) { console.error(err); }
   }
   live = null;
+  ui.setTimer(null);
   view.reveal(); // whole item sharp, and a zoom round pulls back out
   if (zoom) audio.reveal();
   if (!round.winners.length) audio.timeUp();

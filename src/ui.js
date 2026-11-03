@@ -3,6 +3,9 @@ const GUESS_MS = 4000; // how long a guess floats over the item
 const MAX_GUESSES = 8; // cap so a flood of chat cannot cover the item
 const GIFT_MS = 3500; // how long a gift notice stays
 const MAX_GIFTS = 3;
+const BANNER_HOLD_MS = 1400; // the round's difficulty or mode stays big in the middle this long
+const BANNER_FLY_MS = 700; // then takes this long to shrink up into the header badge
+const LOW_SECONDS = 10; // the timer is highlighted for the last this many seconds
 const DEV_LIKES = 25; // one dev click stands in for a burst of likes, enough to see the item spin faster
 
 function el(tag, className, text) {
@@ -30,8 +33,9 @@ function show(container, node, ms, max) {
 export function createUi(root, bus) {
   const round = el('span', 'hud-round');
   const difficulty = el('span', 'hud-difficulty');
+  const timer = el('span', 'hud-timer');
   const header = el('header', 'hud-header');
-  header.append(round, difficulty);
+  header.append(round, timer, difficulty);
 
   // two canvases of the same scene (see pixel.js) and the wipe line between the sharp and the chunky part
   const base = el('canvas');
@@ -48,16 +52,73 @@ export function createUi(root, bus) {
   const boardWrap = el('section', 'hud-board-wrap');
   boardWrap.append(el('h2', 'hud-board-title', 'Today'), board);
 
-  root.append(header, view, result, boardWrap);
+  const help = el('ul', 'hud-help'); // how viewers play, filled by showHelp
+  root.append(header, view, result, boardWrap, help);
 
   if (new URLSearchParams(location.search).get('dev') === '1') document.body.append(devPanel(bus));
 
+  // The round's difficulty or mode flashes big in the middle of the item, then shrinks and flies up into the header badge.
+  let announcing = null; // { banner, timer, anim } for the one in progress
+  function endAnnounce() {
+    if (!announcing) return;
+    clearTimeout(announcing.timer);
+    announcing.anim?.cancel();
+    announcing.banner.remove();
+    announcing = null;
+    difficulty.style.visibility = 'visible';
+  }
+  function announce(label, roundNumber) {
+    endAnnounce();
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return; // just the badge
+    const banner = el('div', `hud-banner is-${label}`);
+    banner.append(el('p', 'hud-banner-title', label === 'zoom' ? 'zoom round' : label), el('p', 'hud-banner-sub', `Round ${roundNumber}`));
+    banner.style.left = `${view.offsetLeft + view.offsetWidth / 2}px`;
+    banner.style.top = `${view.offsetTop + view.offsetHeight / 2}px`;
+    root.append(banner);
+    difficulty.style.visibility = 'hidden'; // the banner lands here
+    const state = (announcing = { banner, timer: 0, anim: null });
+    state.timer = setTimeout(() => {
+      const from = banner.getBoundingClientRect();
+      const to = difficulty.getBoundingClientRect();
+      const dx = to.left + to.width / 2 - (from.left + from.width / 2);
+      const dy = to.top + to.height / 2 - (from.top + from.height / 2);
+      state.anim = banner.animate(
+        [
+          { transform: 'translate(-50%, -50%) scale(1)' },
+          { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${to.width / from.width})` },
+        ],
+        { duration: BANNER_FLY_MS, easing: 'ease-in-out', fill: 'forwards' },
+      );
+      state.anim.onfinish = () => { if (announcing === state) endAnnounce(); };
+    }, BANNER_HOLD_MS);
+  }
+
   return {
     stage: { base, top, scan },
+    // the always-visible "how to play" line: what chat, gifts and taps do
+    showHelp(giftSeconds) {
+      const row = (key, text) => {
+        const li = el('li');
+        li.append(el('b', 'hud-help-key', key), ` ${text}`);
+        return li;
+      };
+      help.replaceChildren(
+        row('Chat', 'type your guess'),
+        row('Gift', `+1 multiplier for ${giftSeconds}s`),
+        row('Tap', 'spin the item faster'),
+      );
+    },
     showRound(roundNumber, label) {
       round.textContent = `Round ${roundNumber}`;
-      difficulty.textContent = label;
+      difficulty.textContent = label === 'zoom' ? 'zoom round' : label;
+      difficulty.className = `hud-difficulty is-${label}`; // easy, medium, hard or zoom: styled differently in theme.css
+      announce(label, roundNumber);
       result.replaceChildren();
+    },
+    // seconds left in the round, or null to clear it; the last LOW_SECONDS get a frame as well as a stronger colour
+    setTimer(seconds) {
+      timer.textContent = seconds === null ? '' : `${seconds}s`;
+      timer.classList.toggle('is-low', seconds !== null && seconds <= LOW_SECONDS);
     },
     // multiplier > 1 means the viewer has gifts running: shown next to their guess
     floatGuess(user, text, multiplier = 1) {

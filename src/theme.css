@@ -65,6 +65,8 @@ main {
 /* header: round number and difficulty */
 .hud-header {
   display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-s);
   justify-content: space-between;
   align-items: baseline;
   border-bottom: var(--line-w) solid var(--line);
@@ -73,12 +75,45 @@ main {
   letter-spacing: var(--tracking);
 }
 .hud-round { font-size: var(--text-l); }
+.hud-timer {
+  font-size: var(--text-l);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--glow);
+  padding: 0 var(--gap-s);
+  border: var(--line-w) solid transparent;
+}
+.hud-timer.is-low { border-color: var(--line-strong); background: var(--top-bg); } /* last seconds: framed, not only a colour change */
 .hud-difficulty {
-  font-size: var(--text-s);
+  font-size: var(--text-m);
+  font-weight: 700;
   border: var(--line-w) solid var(--line-strong);
   border-radius: var(--radius);
   padding: 0 var(--gap-s);
 }
+.hud-difficulty.is-hard { border-style: double; border-width: 3px; }
+.hud-difficulty.is-zoom { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+/* big announcement at the start of every round: centred on the item (ui.js sets left and top), then it flies up into the badge */
+.hud-banner {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+  padding: var(--gap) calc(2 * var(--gap));
+  background: var(--bg-panel);
+  border: var(--line-w) solid var(--line-strong);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking);
+}
+.hud-banner-title { margin: 0; font-size: var(--text-xl); font-weight: 700; color: var(--accent); text-shadow: 0 0 10px var(--glow); }
+.hud-banner-sub { margin: 0; font-size: var(--text-s); color: var(--ink-dim); }
+.hud-banner.is-hard { border-style: double; border-width: 3px; }
+.hud-banner.is-zoom { background: var(--accent); border-color: var(--accent); }
+.hud-banner.is-zoom .hud-banner-title, .hud-banner.is-zoom .hud-banner-sub { color: var(--accent-ink); text-shadow: none; }
 
 /* the item: two canvases of one scene, a wipe line, and the guess and gift layers over them */
 .hud-view { position: relative; flex: none; overflow: hidden; border: var(--line-w) solid var(--line); }
@@ -187,6 +222,21 @@ main {
 .hud-rank { flex: none; min-width: 3ch; color: var(--ink-dim); }
 .hud-board li.is-top { font-size: var(--text-m); font-weight: 700; background: var(--top-bg); border-color: var(--line-strong); }
 .hud-board li.is-top .hud-rank, .hud-board li.is-top .hud-points { color: var(--accent); }
+
+/* how to play: one short line each for chat, gifts and taps */
+.hud-help {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--gap);
+  list-style: none;
+  margin: 0;
+  padding: var(--gap-s) 0 0;
+  border-top: var(--line-w) solid var(--line);
+  font-size: var(--text-s);
+  color: var(--ink-dim);
+}
+.hud-help-key { color: var(--accent); text-transform: uppercase; letter-spacing: var(--tracking); }
 
 /* dev panel (?dev=1 only): fixed in the page corner, outside the stream area */
 .dev-panel {

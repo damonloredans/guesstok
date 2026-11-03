@@ -18,20 +18,21 @@ export function createAudio() {
   // Browsers keep sound off until the page is clicked (OBS and Live Studio browser sources usually don't).
   const hint = Object.assign(document.createElement('p'), { textContent: 'Click anywhere to turn sound on' });
   hint.style.cssText = 'position:fixed;left:8px;bottom:8px;margin:0;padding:2px 6px;font:12px sans-serif;color:#dff7ff;background:#04090f;border:1px solid #3fe0ff;';
-  async function unlock() {
-    await ctx.resume();
-    if (ctx.state !== 'running') return;
+  // Without a click, ctx.resume() can stay pending forever, so wait for a click or key instead of awaiting it.
+  const resume = () => ctx.resume();
+  function started() {
     hint.remove();
-    removeEventListener('pointerdown', unlock);
-    removeEventListener('keydown', unlock);
+    removeEventListener('pointerdown', resume);
+    removeEventListener('keydown', resume);
     bgm.play().catch(() => {}); // no music file: nothing to play
   }
-  ctx.resume().then(() => {
-    if (ctx.state === 'running') return unlock();
+  ctx.addEventListener('statechange', () => { if (ctx.state === 'running') started(); });
+  if (ctx.state === 'running') started();
+  else {
     document.body.append(hint);
-    addEventListener('pointerdown', unlock);
-    addEventListener('keydown', unlock);
-  });
+    addEventListener('pointerdown', resume);
+    addEventListener('keydown', resume);
+  }
 
   const on = () => ctx.state === 'running';
 
