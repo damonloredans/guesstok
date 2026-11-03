@@ -39,13 +39,18 @@
 html, body { margin: 0; height: 100%; background: var(--bg); overflow: hidden; }
 body { display: flex; align-items: center; justify-content: center; }
 
-/* 9:16 stage that fits any viewport without losing its ratio or scrolling sideways */
-main {
+/* 9:16 frame that fits any viewport without losing its ratio or scrolling sideways.
+   It is the query container, so cqw on main and everything inside is a percent of the 9:16 width
+   (an element cannot query itself, which is why main is not the container). */
+.frame {
   width: min(100vw, 100dvh * 9 / 16);
   aspect-ratio: 9 / 16;
+  container-type: inline-size;
+}
+main {
+  height: 100%;
   position: relative;
   overflow: hidden;
-  container-type: inline-size;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -174,6 +179,11 @@ main {
 
 /* dev panel (?dev=1 only): fixed in the page corner, outside the stream area */
 .dev-panel {
+  /* outside the 9:16 container, so cqw would mean viewport width here: fixed sizes instead */
+  --text-s: 11px;
+  --text-m: 13px;
+  --gap: 8px;
+  --gap-s: 4px;
   position: fixed;
   right: var(--gap);
   bottom: var(--gap);
