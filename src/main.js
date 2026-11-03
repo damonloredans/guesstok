@@ -1,10 +1,11 @@
 import settings from './settings.js';
 import { createBus } from './events.js';
 import { createGiftBook } from './score.js';
-import { createRound, createPicker } from './round.js';
+import { createRound, createPicker, roundKind } from './round.js';
 import { createLeaderboard, browserStore } from './leaderboard.js';
 import { createPixelView } from './pixel.js';
 import { createUi } from './ui.js';
+import { createAudio } from './audio.js';
 
 const BOARD_ROWS = 5;
 const TICK_MS = 100;
@@ -25,7 +26,9 @@ const root = document.getElementById('app');
 const bus = createBus();
 const ui = createUi(root, bus);
 const giftBook = createGiftBook();
-const leaderboard = createLeaderboard(browserStore());
+const store = browserStore();
+const leaderboard = createLeaderboard(store);
+const ROUND_KEY = 'guesstok.round';
 
 function fatal(message) {
   root.replaceChildren(Object.assign(document.createElement('p'), { className: 'hud-fatal', textContent: message }));
@@ -44,7 +47,8 @@ if (!Array.isArray(items) || !items.length) {
   throw new Error('no items');
 }
 
-const view = createPixelView(ui.canvas);
+const view = createPixelView(ui.stage);
+const audio = createAudio();
 const picker = createPicker(items);
 let live = null; // { round, item, startedAt } while a round is running, else null
 
@@ -52,20 +56,27 @@ bus.on('guess', safe((e) => {
   const user = str(e?.user, MAX_USER);
   const text = str(e?.text, MAX_TEXT);
   if (!live || !user || !text) return;
-  ui.floatGuess(user, text);
   const now = Math.max(Date.now(), live.startedAt);
-  const { points } = live.round.guess({ user, text, now, multiplier: giftBook.multiplier(user, now) });
-  if (points > 0) {
+  const multiplier = giftBook.multiplier(user, now);
+  ui.floatGuess(user, text, multiplier);
+  audio.guess();
+  const { correct, points } = live.round.guess({ user, text, now, multiplier });
+  if (correct) {
+    audio.correct();
     leaderboard.add(user, points, now);
     refreshBoard();
   }
 }));
 bus.on('like', safe((e) => {
-  if (live && isCount(e?.count)) live.round.addLikes(e.count);
+  if (isCount(e?.count)) view.boostSpin(e.count);
 }));
 bus.on('gift', safe((e) => {
   const user = str(e?.user, MAX_USER);
-  if (user && isCount(e?.count)) giftBook.add(user, e.count, Date.now());
+  if (!user || !isCount(e?.count)) return;
+  const now = Date.now();
+  giftBook.add(user, e.count, now);
+  ui.showGift(user, giftBook.multiplier(user, now), settings.giftSeconds);
+  audio.gift();
 }));
 
 async function loadItem(roundNumber) {
@@ -84,11 +95,13 @@ async function loadItem(roundNumber) {
 async function playRound(roundNumber) {
   refreshBoard(); // also picks up the daily reset
   const item = await loadItem(roundNumber);
+  const zoom = roundKind(roundNumber) === 'zoom';
   const startedAt = Date.now();
   const round = createRound({ item, startedAt, settings });
-  ui.showRound(roundNumber, item.difficulty);
-  view.setStage(0);
-  ui.setStage(0, settings.stages);
+  ui.showRound(roundNumber, zoom ? 'zoom' : item.difficulty);
+  view.start({ startedAt, zoom });
+  audio.roundStart();
+  if (zoom) audio.zoomStart();
   live = { round, item, startedAt };
 
   let shown = 0;
@@ -98,16 +111,23 @@ async function playRound(roundNumber) {
       const stage = round.stage(Date.now());
       if (stage !== shown) {
         shown = stage;
-        view.setStage(stage);
-        ui.setStage(stage, settings.stages);
+        audio.sharpen();
       }
     } catch (err) { console.error(err); }
   }
   live = null;
+  view.reveal(); // whole item sharp, and a zoom round pulls back out
+  if (zoom) audio.reveal();
+  if (!round.winners.length) audio.timeUp();
   ui.showResult(item.name, round.winners);
   await sleep(settings.pauseSeconds * 1000);
 }
 
-for (let n = 1; ; n++) {
+// The round number keeps counting across page reloads, so a long stream can read "Round 251".
+// Start somewhere else with ?round=11 (handy for testing a zoom round).
+const asked = Number(new URLSearchParams(location.search).get('round'));
+let n = Number.isInteger(asked) && asked > 0 ? asked : Number(store.get(ROUND_KEY)) || 1;
+for (; ; n++) {
+  store.set(ROUND_KEY, String(n));
   try { await playRound(n); } catch (err) { live = null; console.error(err); await sleep(FAIL_WAIT_MS); }
 }

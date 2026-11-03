@@ -28,12 +28,8 @@
   --line-w: 1px;
   --radius: 2px;
   --grid-size: max(16px, 6cqw);
-  --meter-h: max(8px, 2.4cqw);
   --result-min-h: 22cqw; /* reserved so the board does not jump when a result appears */
   --board-min-h: max(48px, 16cqw); /* title plus the #1 row always fit */
-
-  /* motion */
-  --scan-period: 3s; /* matches the 3-second stage step */
 }
 
 html, body { margin: 0; height: 100%; background: var(--bg); overflow: hidden; }
@@ -84,7 +80,7 @@ main {
   padding: 0 var(--gap-s);
 }
 
-/* the item: canvas square with the guess layer over it */
+/* the item: two canvases of one scene, a wipe line, and the guess and gift layers over them */
 .hud-view { position: relative; flex: none; overflow: hidden; border: var(--line-w) solid var(--line); }
 .hud-view canvas {
   display: block;
@@ -93,28 +89,30 @@ main {
   image-rendering: pixelated;
   background: var(--bg);
 }
-.hud-view::after { /* scan line sweeping down the item: a full-size layer whose top edge is the line */
-  content: "";
+.hud-view canvas.hud-top { /* the sharper copy: pixel.js clips it to the part above the wipe line */
   position: absolute;
   inset: 0;
-  border-top: var(--line-w) solid var(--line-strong);
-  background: linear-gradient(var(--glow), transparent 4%);
-  animation: hud-scan var(--scan-period) linear infinite;
-  pointer-events: none;
+  height: 100%;
+  aspect-ratio: auto;
 }
-@keyframes hud-scan { from { transform: translateY(-1%); } to { transform: translateY(100%); } }
-
-.hud-guesses {
+.hud-scan { /* the wipe line: pixel.js moves it down the item once per stage */
   position: absolute;
-  inset: auto var(--gap-s) var(--gap-s);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--gap-s);
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 0;
+  border-top: var(--line-w) solid var(--line-strong);
+  box-shadow: 0 calc(-1 * var(--gap-s)) var(--gap) var(--glow);
   pointer-events: none;
 }
+
+/* guesses appear at random spots over the item (--x and --y are set per guess), drift up and fade */
+.hud-guesses, .hud-gifts { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 .hud-guess {
-  max-width: 100%;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  max-width: 55%;
   box-sizing: border-box;
   padding: 0 var(--gap-s);
   font-size: var(--text-s);
@@ -128,22 +126,35 @@ main {
 }
 .hud-guess-user { color: var(--accent); }
 .hud-guess-user::after { content: ": "; }
+.hud-guess-mult { margin-left: var(--gap-s); font-weight: 700; color: var(--accent); }
 @keyframes hud-guess {
-  0% { opacity: 0; transform: translateY(40%); }
-  10%, 75% { opacity: 1; transform: none; }
-  100% { opacity: 0; transform: translateY(-40%); }
+  0% { opacity: 0; transform: translateY(0.8em) scale(0.9); }
+  12%, 70% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(-2.5em); }
 }
 
-/* stage meter: filled segments are solid, empty ones are outlines, plus a text label */
-.hud-meter { display: flex; align-items: center; gap: var(--gap-s); font-size: var(--text-s); letter-spacing: var(--tracking); }
-.hud-meter-bar { flex: 1; display: flex; gap: var(--gap-s); }
-.hud-meter-seg {
-  flex: 1;
-  height: var(--meter-h);
+/* gift notices stack at the top of the item */
+.hud-gifts { display: flex; flex-direction: column; align-items: flex-start; gap: var(--gap-s); padding: var(--gap-s); box-sizing: border-box; }
+.hud-gift {
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--gap-s);
+  font-size: var(--text-s);
+  font-weight: 700;
+  background: var(--bg-panel);
   border: var(--line-w) solid var(--line-strong);
-  border-radius: var(--radius);
+  text-shadow: var(--guess-shadow);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: hud-gift linear forwards;
 }
-.hud-meter-seg.is-on { background: var(--accent); box-shadow: 0 0 6px var(--glow); }
+.hud-gift .hud-guess-user::after { content: " "; }
+@keyframes hud-gift {
+  0% { opacity: 0; transform: translateY(-0.8em); }
+  8%, 80% { opacity: 1; transform: none; }
+  100% { opacity: 0; }
+}
 
 /* result: answer big plus winners; empty during a round */
 .hud-result { min-height: var(--result-min-h); overflow: hidden; text-align: center; } /* gives way before the board's #1 row */
@@ -213,7 +224,6 @@ main {
 .dev-panel :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hud-view::after { animation: none; display: none; }
-  .hud-guess { animation: none; }
+  .hud-guess, .hud-gift { animation: none; }
 }
 .hud-fatal { padding: var(--gap); color: var(--ink); font-size: var(--text-m); text-align: center; }

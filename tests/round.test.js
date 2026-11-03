@@ -1,70 +1,66 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createRound, createPicker } from '../src/round.js';
+import { createRound, createPicker, roundKind } from '../src/round.js';
 import settings from '../src/settings.js';
 
 const pizza = { id: 'pizza', name: 'Pizza', answers: [], difficulty: 'easy', file: 'pizza.png', pack: 'food' };
-const mk = (over = {}) => createRound({ item: pizza, startedAt: 0, settings: { ...settings, ...over } });
+const mk = () => createRound({ item: pizza, startedAt: 0, settings });
 
-test('stage rises every 3 seconds', () => {
+test('stage rises every 5 seconds up to 9 stages', () => {
   const r = mk();
   assert.equal(r.stage(0), 0);
-  assert.equal(r.stage(3000), 1);
-  assert.equal(r.stage(12000), 4);
-  assert.equal(r.stage(14999), 4);
+  assert.equal(r.stage(5000), 1);
+  assert.equal(r.stage(40000), 8);
+  assert.equal(r.stage(44999), 8);
 });
 
-test('likes push the stage ahead', () => {
-  const a = mk({ likesPerStage: 100 });
-  a.addLikes(100);
-  assert.equal(a.stage(0), 1);
-  const b = mk({ likesPerStage: 100 });
-  b.addLikes(250);
-  assert.equal(b.stage(0), 2);
-});
-
-test('a huge like batch cannot pass the last stage', () => {
-  const r = mk({ likesPerStage: 100 });
-  r.addLikes(1e9);
-  assert.equal(r.stage(0), 4);
-});
-
-test('correct guess scores by stage and multiplier', () => {
+test('the first correct guess ends the round and is the only winner', () => {
   const r = mk();
-  assert.deepEqual(r.guess({ user: 'ann', text: 'pizza', now: 7000, multiplier: 2 }), { correct: true, points: 6 });
-  assert.deepEqual(r.winners, [{ user: 'ann', points: 6, stage: 2 }]);
-});
-
-test('wrong guess scores nothing', () => {
-  const r = mk();
-  assert.deepEqual(r.guess({ user: 'ann', text: 'burger', now: 1000, multiplier: 1 }), { correct: false, points: 0 });
-  assert.equal(r.winners.length, 0);
-});
-
-test('a viewer scores only once per round', () => {
-  const r = mk();
-  r.guess({ user: 'ann', text: 'pizza', now: 1000, multiplier: 1 });
-  assert.deepEqual(r.guess({ user: 'ann', text: 'pizza', now: 2000, multiplier: 1 }), { correct: true, points: 0 });
+  assert.equal(r.isOver(7000), false);
+  assert.deepEqual(r.guess({ user: 'ann', text: 'pizza', now: 7000, multiplier: 2 }), { correct: true, points: 16 });
+  assert.deepEqual(r.winners, [{ user: 'ann', points: 16, stage: 1, multiplier: 2 }]);
+  assert.equal(r.isOver(7000), true);
+  assert.deepEqual(r.guess({ user: 'bob', text: 'pizza', now: 7001, multiplier: 1 }), { correct: false, points: 0 });
   assert.equal(r.winners.length, 1);
 });
 
-test('guess after the round ends scores nothing', () => {
+test('wrong guess scores nothing and the round carries on', () => {
   const r = mk();
-  assert.equal(r.isOver(14999), false);
-  assert.equal(r.isOver(15000), true);
-  assert.deepEqual(r.guess({ user: 'ann', text: 'pizza', now: 15000, multiplier: 1 }), { correct: false, points: 0 });
+  assert.deepEqual(r.guess({ user: 'ann', text: 'burger', now: 1000, multiplier: 1 }), { correct: false, points: 0 });
+  assert.equal(r.winners.length, 0);
+  assert.equal(r.isOver(1000), false);
 });
 
-const items = [
-  ...['a', 'b', 'c'].map((id) => ({ id, name: id, answers: [], difficulty: 'easy', file: id, pack: 'p' })),
-  { id: 'm', name: 'm', answers: [], difficulty: 'medium', file: 'm', pack: 'p' },
-  { id: 'h', name: 'h', answers: [], difficulty: 'hard', file: 'h', pack: 'p' },
-];
+test('guess after the 45 seconds are up scores nothing', () => {
+  const r = mk();
+  assert.equal(r.isOver(44999), false);
+  assert.equal(r.isOver(45000), true);
+  assert.deepEqual(r.guess({ user: 'ann', text: 'pizza', now: 45000, multiplier: 1 }), { correct: false, points: 0 });
+});
+
+test('roundKind follows the pattern and a zoom round comes after every 10 rounds', () => {
+  const kinds = Array.from({ length: 11 }, (_, i) => roundKind(i + 1));
+  assert.deepEqual(kinds, ['easy', 'easy', 'easy', 'easy', 'medium', 'easy', 'easy', 'medium', 'medium', 'hard', 'zoom']);
+  assert.equal(roundKind(12), 'easy');
+  assert.equal(roundKind(22), 'zoom');
+});
+
+const mkItem = (id, difficulty) => ({ id, name: id, answers: [], difficulty, file: id, pack: 'p' });
+const items = [...['a', 'b', 'c'].map((id) => mkItem(id, 'easy')), mkItem('m', 'medium'), mkItem('m2', 'medium'), mkItem('h', 'hard')];
 const seeded = () => { let s = 7; return () => ((s = (s * 16807) % 2147483647) / 2147483647); };
 
-test('picker uses easy items first', () => {
+test('picker picks the difficulty the pattern asks for, and a medium item for a zoom round', () => {
   const p = createPicker(items, seeded());
-  for (let i = 0; i < 30; i++) assert.equal(p.next(1).difficulty, 'easy');
+  const want = ['easy', 'easy', 'easy', 'easy', 'medium', 'easy', 'easy', 'medium', 'medium', 'hard', 'medium'];
+  want.forEach((tier, i) => assert.equal(p.next(i + 1).difficulty, tier, `round ${i + 1}`));
+});
+
+test('picker plays every item of a difficulty once before any repeats', () => {
+  const p = createPicker(items, seeded());
+  const firstDeck = [1, 2, 3].map(() => p.next(1).id).sort();
+  assert.deepEqual(firstDeck, ['a', 'b', 'c']);
+  const secondDeck = [1, 2, 3].map(() => p.next(1).id).sort();
+  assert.deepEqual(secondDeck, ['a', 'b', 'c']);
 });
 
 test('picker does not repeat the previous item back to back', () => {

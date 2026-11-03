@@ -2,10 +2,10 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { pointsFor, createGiftBook } from '../src/score.js';
 
-test('points are 5,4,3,2,1 by stage times the multiplier', () => {
-  assert.equal(pointsFor(0, 1), 5);
-  assert.equal(pointsFor(4, 1), 1);
-  assert.equal(pointsFor(1, 3), 12);
+test('points are 9 down to 1 by stage times the multiplier', () => {
+  assert.equal(pointsFor(0, 1), 9);
+  assert.equal(pointsFor(8, 1), 1);
+  assert.equal(pointsFor(1, 3), 24);
 });
 
 test('one gift makes x2', () => {
