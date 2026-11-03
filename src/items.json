@@ -1,0 +1,675 @@
+[
+  {
+    "id": "apple",
+    "name": "Apple",
+    "answers": [
+      "apple"
+    ],
+    "difficulty": "easy",
+    "file": "food-kit/Apple.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "banana",
+    "name": "Banana",
+    "answers": [
+      "banana"
+    ],
+    "difficulty": "easy",
+    "file": "ultimate-food-pack/Banana.glb",
+    "pack": "Ultimate Food Pack"
+  },
+  {
+    "id": "pizza",
+    "name": "Pizza",
+    "answers": [
+      "pizza"
+    ],
+    "difficulty": "easy",
+    "file": "food-kit/Pizza.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "burger",
+    "name": "Burger",
+    "answers": [
+      "burger",
+      "hamburger",
+      "cheeseburger"
+    ],
+    "difficulty": "easy",
+    "file": "ultimate-food-pack/Burger.glb",
+    "pack": "Ultimate Food Pack"
+  },
+  {
+    "id": "donut",
+    "name": "Donut",
+    "answers": [
+      "donut",
+      "doughnut"
+    ],
+    "difficulty": "easy",
+    "file": "ultimate-food-pack/Donut.glb",
+    "pack": "Ultimate Food Pack"
+  },
+  {
+    "id": "croissant",
+    "name": "Croissant",
+    "answers": [
+      "croissant"
+    ],
+    "difficulty": "easy",
+    "file": "ultimate-food-pack/Croissant.glb",
+    "pack": "Ultimate Food Pack"
+  },
+  {
+    "id": "ice-cream",
+    "name": "Ice Cream",
+    "answers": [
+      "ice cream",
+      "icecream",
+      "ice-cream"
+    ],
+    "difficulty": "easy",
+    "file": "ultimate-food-pack/Ice Cream.glb",
+    "pack": "Ultimate Food Pack"
+  },
+  {
+    "id": "hot-dog",
+    "name": "Hot Dog",
+    "answers": [
+      "hot dog",
+      "hotdog"
+    ],
+    "difficulty": "easy",
+    "file": "food-kit/Hot Dog.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "strawberry",
+    "name": "Strawberry",
+    "answers": [
+      "strawberry"
+    ],
+    "difficulty": "easy",
+    "file": "food-kit/Strawberry.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "pineapple",
+    "name": "Pineapple",
+    "answers": [
+      "pineapple"
+    ],
+    "difficulty": "easy",
+    "file": "food-kit/Pineapple.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "fox",
+    "name": "Fox",
+    "answers": [
+      "fox"
+    ],
+    "difficulty": "easy",
+    "file": "animated-animal-pack/Fox.glb",
+    "pack": "Animated Animal Pack"
+  },
+  {
+    "id": "horse",
+    "name": "Horse",
+    "answers": [
+      "horse"
+    ],
+    "difficulty": "easy",
+    "file": "animated-animal-pack/Horse.glb",
+    "pack": "Animated Animal Pack"
+  },
+  {
+    "id": "wolf",
+    "name": "Wolf",
+    "answers": [
+      "wolf"
+    ],
+    "difficulty": "easy",
+    "file": "animated-animal-pack/Wolf.glb",
+    "pack": "Animated Animal Pack"
+  },
+  {
+    "id": "cow",
+    "name": "Cow",
+    "answers": [
+      "cow"
+    ],
+    "difficulty": "easy",
+    "file": "animated-animal-pack/Cow.glb",
+    "pack": "Animated Animal Pack"
+  },
+  {
+    "id": "deer",
+    "name": "Deer",
+    "answers": [
+      "deer",
+      "stag"
+    ],
+    "difficulty": "easy",
+    "file": "animated-animal-pack/Deer.glb",
+    "pack": "Animated Animal Pack"
+  },
+  {
+    "id": "car",
+    "name": "Car",
+    "answers": [
+      "car"
+    ],
+    "difficulty": "easy",
+    "file": "city-pack/Car.glb",
+    "pack": "City Pack"
+  },
+  {
+    "id": "bus",
+    "name": "Bus",
+    "answers": [
+      "bus"
+    ],
+    "difficulty": "easy",
+    "file": "city-pack/Bus.glb",
+    "pack": "City Pack"
+  },
+  {
+    "id": "bicycle",
+    "name": "Bicycle",
+    "answers": [
+      "bicycle",
+      "bike",
+      "cycle"
+    ],
+    "difficulty": "easy",
+    "file": "city-pack/Bicycle.glb",
+    "pack": "City Pack"
+  },
+  {
+    "id": "motorcycle",
+    "name": "Motorcycle",
+    "answers": [
+      "motorcycle",
+      "motorbike",
+      "motor bike"
+    ],
+    "difficulty": "easy",
+    "file": "city-pack/Motorcycle.glb",
+    "pack": "City Pack"
+  },
+  {
+    "id": "santa",
+    "name": "Santa",
+    "answers": [
+      "santa",
+      "santa claus",
+      "father christmas"
+    ],
+    "difficulty": "easy",
+    "file": "christmas-kit/Santa.glb",
+    "pack": "Christmas Kit"
+  },
+  {
+    "id": "pine-tree",
+    "name": "Pine Tree",
+    "answers": [
+      "pine tree",
+      "christmas tree",
+      "pine",
+      "fir tree"
+    ],
+    "difficulty": "easy",
+    "file": "christmas-kit/Pine Tree.glb",
+    "pack": "Christmas Kit"
+  },
+  {
+    "id": "bells",
+    "name": "Bells",
+    "answers": [
+      "bells",
+      "bell",
+      "jingle bells"
+    ],
+    "difficulty": "easy",
+    "file": "christmas-kit/Bells.glb",
+    "pack": "Christmas Kit"
+  },
+  {
+    "id": "stapler",
+    "name": "Stapler",
+    "answers": [
+      "stapler"
+    ],
+    "difficulty": "medium",
+    "file": "office-pack/Stapler.glb",
+    "pack": "The Office Pack"
+  },
+  {
+    "id": "rubik-s-cube",
+    "name": "Rubik's Cube",
+    "answers": [
+      "rubik's cube",
+      "rubiks cube",
+      "rubix cube",
+      "rubik cube",
+      "cube"
+    ],
+    "difficulty": "medium",
+    "file": "office-pack/Rubik's cube.glb",
+    "pack": "The Office Pack"
+  },
+  {
+    "id": "trophy",
+    "name": "Trophy",
+    "answers": [
+      "trophy",
+      "cup",
+      "award"
+    ],
+    "difficulty": "medium",
+    "file": "office-pack/Trophy.glb",
+    "pack": "The Office Pack"
+  },
+  {
+    "id": "keyboard",
+    "name": "Keyboard",
+    "answers": [
+      "keyboard"
+    ],
+    "difficulty": "medium",
+    "file": "office-pack/Keyboard.glb",
+    "pack": "The Office Pack"
+  },
+  {
+    "id": "skateboard",
+    "name": "Skateboard",
+    "answers": [
+      "skateboard",
+      "skate board",
+      "skate"
+    ],
+    "difficulty": "medium",
+    "file": "office-pack/Skateboard.glb",
+    "pack": "The Office Pack"
+  },
+  {
+    "id": "dartboard",
+    "name": "Dartboard",
+    "answers": [
+      "dartboard",
+      "dart board",
+      "darts"
+    ],
+    "difficulty": "medium",
+    "file": "office-pack/Dartboard.glb",
+    "pack": "The Office Pack"
+  },
+  {
+    "id": "whisk",
+    "name": "Whisk",
+    "answers": [
+      "whisk"
+    ],
+    "difficulty": "medium",
+    "file": "food-kit/Whisk.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "fire-hydrant",
+    "name": "Fire Hydrant",
+    "answers": [
+      "fire hydrant",
+      "hydrant"
+    ],
+    "difficulty": "medium",
+    "file": "city-pack/Fire hydrant.glb",
+    "pack": "City Pack"
+  },
+  {
+    "id": "police-car",
+    "name": "Police Car",
+    "answers": [
+      "police car",
+      "cop car",
+      "police"
+    ],
+    "difficulty": "medium",
+    "file": "city-pack/Police Car.glb",
+    "pack": "City Pack"
+  },
+  {
+    "id": "pumpkin",
+    "name": "Pumpkin",
+    "answers": [
+      "pumpkin"
+    ],
+    "difficulty": "medium",
+    "file": "ultimate-food-pack/Pumpkin.glb",
+    "pack": "Ultimate Food Pack"
+  },
+  {
+    "id": "taco",
+    "name": "Taco",
+    "answers": [
+      "taco"
+    ],
+    "difficulty": "medium",
+    "file": "food-kit/Taco.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "sushi",
+    "name": "Sushi",
+    "answers": [
+      "sushi",
+      "nigiri"
+    ],
+    "difficulty": "medium",
+    "file": "ultimate-food-pack/Sushi Nigiri.glb",
+    "pack": "Ultimate Food Pack"
+  },
+  {
+    "id": "husky",
+    "name": "Husky",
+    "answers": [
+      "husky",
+      "siberian husky"
+    ],
+    "difficulty": "medium",
+    "file": "animated-animal-pack/Husky.glb",
+    "pack": "Animated Animal Pack"
+  },
+  {
+    "id": "cactus",
+    "name": "Cactus",
+    "answers": [
+      "cactus"
+    ],
+    "difficulty": "medium",
+    "file": "ultimate-house-interior-pack/Cactus.glb",
+    "pack": "Ultimate House Interior Pack"
+  },
+  {
+    "id": "bathtub",
+    "name": "Bathtub",
+    "answers": [
+      "bathtub",
+      "bath",
+      "bath tub"
+    ],
+    "difficulty": "medium",
+    "file": "ultimate-house-interior-pack/Bathtub.glb",
+    "pack": "Ultimate House Interior Pack"
+  },
+  {
+    "id": "traffic-light",
+    "name": "Traffic Light",
+    "answers": [
+      "traffic light",
+      "traffic lights",
+      "stop light",
+      "stoplight"
+    ],
+    "difficulty": "medium",
+    "file": "city-pack/Traffic Light.glb",
+    "pack": "City Pack"
+  },
+  {
+    "id": "cupcake",
+    "name": "Cupcake",
+    "answers": [
+      "cupcake",
+      "cup cake",
+      "muffin"
+    ],
+    "difficulty": "medium",
+    "file": "ultimate-food-pack/Cupcake.glb",
+    "pack": "Ultimate Food Pack"
+  },
+  {
+    "id": "mailbox",
+    "name": "Mailbox",
+    "answers": [
+      "mailbox",
+      "mail box",
+      "post box",
+      "letterbox",
+      "letter box"
+    ],
+    "difficulty": "medium",
+    "file": "city-pack/Mailbox.glb",
+    "pack": "City Pack"
+  },
+  {
+    "id": "watermelon",
+    "name": "Watermelon",
+    "answers": [
+      "watermelon",
+      "water melon"
+    ],
+    "difficulty": "medium",
+    "file": "food-kit/Watermelon.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "christmas-cookies",
+    "name": "Christmas Cookies",
+    "answers": [
+      "christmas cookies",
+      "cookies",
+      "gingerbread"
+    ],
+    "difficulty": "medium",
+    "file": "christmas-kit/Christmas Cookies.glb",
+    "pack": "Christmas Kit"
+  },
+  {
+    "id": "rolling-pin",
+    "name": "Rolling Pin",
+    "answers": [
+      "rolling pin",
+      "rolling-pin"
+    ],
+    "difficulty": "hard",
+    "file": "food-kit/Rolling Pin.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "pepper-mill",
+    "name": "Pepper Mill",
+    "answers": [
+      "pepper mill",
+      "pepper grinder",
+      "pepper shaker"
+    ],
+    "difficulty": "hard",
+    "file": "food-kit/Pepper Mill.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "mincemeat-pie",
+    "name": "Mincemeat Pie",
+    "answers": [
+      "mincemeat pie",
+      "mince pie",
+      "pie"
+    ],
+    "difficulty": "hard",
+    "file": "food-kit/Mincemeat Pie.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "alpaca",
+    "name": "Alpaca",
+    "answers": [
+      "alpaca",
+      "llama"
+    ],
+    "difficulty": "hard",
+    "file": "animated-animal-pack/Alpaca.glb",
+    "pack": "Animated Animal Pack"
+  },
+  {
+    "id": "donkey",
+    "name": "Donkey",
+    "answers": [
+      "donkey",
+      "ass"
+    ],
+    "difficulty": "hard",
+    "file": "animated-animal-pack/Donkey.glb",
+    "pack": "Animated Animal Pack"
+  },
+  {
+    "id": "shiba-inu",
+    "name": "Shiba Inu",
+    "answers": [
+      "shiba inu",
+      "shiba",
+      "shibainu"
+    ],
+    "difficulty": "hard",
+    "file": "animated-animal-pack/Shiba Inu.glb",
+    "pack": "Animated Animal Pack"
+  },
+  {
+    "id": "cake-slicer",
+    "name": "Cake Slicer",
+    "answers": [
+      "cake slicer",
+      "cake server",
+      "cake cutter"
+    ],
+    "difficulty": "hard",
+    "file": "food-kit/Cake Slicer.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "manhole-cover",
+    "name": "Manhole Cover",
+    "answers": [
+      "manhole cover",
+      "manhole",
+      "drain cover"
+    ],
+    "difficulty": "hard",
+    "file": "city-pack/Manhole Cover.glb",
+    "pack": "City Pack"
+  },
+  {
+    "id": "washing-machine",
+    "name": "Washing Machine",
+    "answers": [
+      "washing machine",
+      "washer",
+      "laundry machine"
+    ],
+    "difficulty": "hard",
+    "file": "ultimate-house-interior-pack/Washing Machine.glb",
+    "pack": "Ultimate House Interior Pack"
+  },
+  {
+    "id": "chandelier",
+    "name": "Chandelier",
+    "answers": [
+      "chandelier",
+      "light chandelier"
+    ],
+    "difficulty": "hard",
+    "file": "ultimate-house-interior-pack/Light Chandelier.glb",
+    "pack": "Ultimate House Interior Pack"
+  },
+  {
+    "id": "pizza-cutter",
+    "name": "Pizza Cutter",
+    "answers": [
+      "pizza cutter",
+      "pizza wheel",
+      "pizza slicer"
+    ],
+    "difficulty": "hard",
+    "file": "food-kit/Pizza Cutter.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "meat-tenderizer",
+    "name": "Meat Tenderizer",
+    "answers": [
+      "meat tenderizer",
+      "meat mallet",
+      "tenderizer"
+    ],
+    "difficulty": "hard",
+    "file": "food-kit/Meat Tenderizer.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "egg-cup",
+    "name": "Egg Cup",
+    "answers": [
+      "egg cup",
+      "eggcup"
+    ],
+    "difficulty": "hard",
+    "file": "food-kit/Egg Cup.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "leek",
+    "name": "Leek",
+    "answers": [
+      "leek"
+    ],
+    "difficulty": "hard",
+    "file": "food-kit/Leek.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "beet",
+    "name": "Beet",
+    "answers": [
+      "beet",
+      "beetroot"
+    ],
+    "difficulty": "hard",
+    "file": "food-kit/Beet.glb",
+    "pack": "Food Kit"
+  },
+  {
+    "id": "water-cooler",
+    "name": "Water Cooler",
+    "answers": [
+      "water cooler",
+      "water dispenser"
+    ],
+    "difficulty": "hard",
+    "file": "office-pack/Water Cooler.glb",
+    "pack": "The Office Pack"
+  },
+  {
+    "id": "desk-toy",
+    "name": "Desk Toy",
+    "answers": [
+      "desk toy",
+      "newton's cradle",
+      "newtons cradle"
+    ],
+    "difficulty": "hard",
+    "file": "office-pack/Desk Toy.glb",
+    "pack": "The Office Pack"
+  },
+  {
+    "id": "icosahedron",
+    "name": "Icosahedron",
+    "answers": [
+      "icosahedron",
+      "icosahedron lamp"
+    ],
+    "difficulty": "hard",
+    "file": "office-pack/Light Icosahedron.glb",
+    "pack": "The Office Pack"
+  }
+]
