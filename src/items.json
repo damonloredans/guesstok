@@ -648,28 +648,5 @@
     "difficulty": "hard",
     "file": "office-pack/Water Cooler.glb",
     "pack": "The Office Pack"
-  },
-  {
-    "id": "desk-toy",
-    "name": "Desk Toy",
-    "answers": [
-      "desk toy",
-      "newton's cradle",
-      "newtons cradle"
-    ],
-    "difficulty": "hard",
-    "file": "office-pack/Desk Toy.glb",
-    "pack": "The Office Pack"
-  },
-  {
-    "id": "icosahedron",
-    "name": "Icosahedron",
-    "answers": [
-      "icosahedron",
-      "icosahedron lamp"
-    ],
-    "difficulty": "hard",
-    "file": "office-pack/Light Icosahedron.glb",
-    "pack": "The Office Pack"
   }
 ]
