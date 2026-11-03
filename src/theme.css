@@ -1,0 +1,208 @@
+/* Guesstok look: "hologram scanner" (placeholder). Swap the look by editing the :root tokens below. */
+:root {
+  /* colours */
+  --bg: #04090f;
+  --bg-panel: rgba(8, 24, 34, 0.82);
+  --ink: #dff7ff;
+  --ink-dim: #8fb8c6;
+  --accent: #3fe0ff;
+  --accent-ink: #04090f; /* text drawn on an --accent fill */
+  --line: rgba(63, 224, 255, 0.4);
+  --line-strong: rgba(63, 224, 255, 0.85);
+  --grid: rgba(63, 224, 255, 0.07);
+  --glow: rgba(63, 224, 255, 0.35);
+  --top-bg: rgba(63, 224, 255, 0.16);
+  --guess-shadow: 0 0 6px var(--bg), 0 0 2px var(--bg);
+
+  /* type: cqw is a percent of the 9:16 container width; max() keeps every size at 11px or more */
+  --font: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
+  --text-s: max(11px, 3.4cqw);
+  --text-m: max(13px, 4.4cqw);
+  --text-l: max(16px, 6cqw);
+  --text-xl: max(24px, 10cqw);
+  --tracking: 0.08em;
+
+  /* spacing and lines */
+  --gap: max(6px, 2.5cqw);
+  --gap-s: max(3px, 1.2cqw);
+  --line-w: 1px;
+  --radius: 2px;
+  --grid-size: max(16px, 6cqw);
+  --meter-h: max(8px, 2.4cqw);
+  --result-min-h: 22cqw; /* reserved so the board does not jump when a result appears */
+  --board-min-h: max(48px, 16cqw); /* title plus the #1 row always fit */
+
+  /* motion */
+  --scan-period: 3s; /* matches the 3-second stage step */
+}
+
+html, body { margin: 0; height: 100%; background: var(--bg); overflow: hidden; }
+body { display: flex; align-items: center; justify-content: center; }
+
+/* 9:16 stage that fits any viewport without losing its ratio or scrolling sideways */
+main {
+  width: min(100vw, 100dvh * 9 / 16);
+  aspect-ratio: 9 / 16;
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding: var(--gap);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--text-m);
+  background:
+    linear-gradient(var(--grid) var(--line-w), transparent var(--line-w)) 0 0 / var(--grid-size) var(--grid-size),
+    linear-gradient(90deg, var(--grid) var(--line-w), transparent var(--line-w)) 0 0 / var(--grid-size) var(--grid-size),
+    var(--bg);
+  border: var(--line-w) solid var(--line);
+}
+
+/* header: round number and difficulty */
+.hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: var(--line-w) solid var(--line);
+  padding-bottom: var(--gap-s);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking);
+}
+.hud-round { font-size: var(--text-l); }
+.hud-difficulty {
+  font-size: var(--text-s);
+  border: var(--line-w) solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 0 var(--gap-s);
+}
+
+/* the item: canvas square with the guess layer over it */
+.hud-view { position: relative; flex: none; overflow: hidden; border: var(--line-w) solid var(--line); }
+.hud-view canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  image-rendering: pixelated;
+  background: var(--bg);
+}
+.hud-view::after { /* scan line sweeping down the item: a full-size layer whose top edge is the line */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-top: var(--line-w) solid var(--line-strong);
+  background: linear-gradient(var(--glow), transparent 4%);
+  animation: hud-scan var(--scan-period) linear infinite;
+  pointer-events: none;
+}
+@keyframes hud-scan { from { transform: translateY(-1%); } to { transform: translateY(100%); } }
+
+.hud-guesses {
+  position: absolute;
+  inset: auto var(--gap-s) var(--gap-s);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-s);
+  pointer-events: none;
+}
+.hud-guess {
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--gap-s);
+  font-size: var(--text-s);
+  background: var(--bg-panel);
+  border-left: var(--line-w) solid var(--line-strong);
+  text-shadow: var(--guess-shadow);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: hud-guess linear forwards; /* duration set from ui.js so it matches the removal timer */
+}
+.hud-guess-user { color: var(--accent); }
+.hud-guess-user::after { content: ": "; }
+@keyframes hud-guess {
+  0% { opacity: 0; transform: translateY(40%); }
+  10%, 75% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(-40%); }
+}
+
+/* stage meter: filled segments are solid, empty ones are outlines, plus a text label */
+.hud-meter { display: flex; align-items: center; gap: var(--gap-s); font-size: var(--text-s); letter-spacing: var(--tracking); }
+.hud-meter-bar { flex: 1; display: flex; gap: var(--gap-s); }
+.hud-meter-seg {
+  flex: 1;
+  height: var(--meter-h);
+  border: var(--line-w) solid var(--line-strong);
+  border-radius: var(--radius);
+}
+.hud-meter-seg.is-on { background: var(--accent); box-shadow: 0 0 6px var(--glow); }
+
+/* result: answer big plus winners; empty during a round */
+.hud-result { min-height: var(--result-min-h); overflow: hidden; text-align: center; } /* gives way before the board's #1 row */
+.hud-answer {
+  margin: 0;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking);
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--glow);
+  overflow-wrap: anywhere;
+}
+.hud-winners, .hud-board {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--text-s);
+}
+.hud-winners { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gap-s) var(--gap); }
+.hud-winners li, .hud-board li { display: flex; gap: var(--gap-s); min-width: 0; }
+.hud-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.hud-points { font-variant-numeric: tabular-nums; color: var(--ink-dim); flex: none; }
+
+/* leaderboard: #1 gets a frame, tint and bold, not just a colour */
+.hud-board-wrap { flex: 1; min-height: var(--board-min-h); overflow: hidden; border-top: var(--line-w) solid var(--line); padding-top: var(--gap-s); }
+.hud-board-title { margin: 0 0 var(--gap-s); font-size: var(--text-s); font-weight: 400; color: var(--ink-dim); letter-spacing: var(--tracking); text-transform: uppercase; }
+.hud-board li { padding: 0 var(--gap-s); border: var(--line-w) solid transparent; }
+.hud-board .hud-name { flex: 1; }
+.hud-rank { flex: none; min-width: 3ch; color: var(--ink-dim); }
+.hud-board li.is-top { font-size: var(--text-m); font-weight: 700; background: var(--top-bg); border-color: var(--line-strong); }
+.hud-board li.is-top .hud-rank, .hud-board li.is-top .hud-points { color: var(--accent); }
+
+/* dev panel (?dev=1 only): fixed in the page corner, outside the stream area */
+.dev-panel {
+  position: fixed;
+  right: var(--gap);
+  bottom: var(--gap);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-s);
+  max-width: calc(100vw - 2 * var(--gap));
+  box-sizing: border-box;
+  padding: var(--gap-s);
+  font-family: var(--font);
+  font-size: var(--text-m);
+  color: var(--ink);
+  background: var(--bg-panel);
+  border: var(--line-w) solid var(--line-strong);
+}
+.dev-panel label { display: flex; flex-direction: column; font-size: var(--text-s); color: var(--ink-dim); }
+.dev-panel input, .dev-panel button {
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg);
+  border: var(--line-w) solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: var(--gap-s);
+}
+.dev-panel input { width: 10ch; }
+.dev-panel button { cursor: pointer; align-self: flex-end; }
+.dev-panel :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-view::after { animation: none; display: none; }
+  .hud-guess { animation: none; }
+}
