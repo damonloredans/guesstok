@@ -16,7 +16,18 @@
 | Ultimate RPG Items Bundle | Quaternius | unconfirmed, check Poly Pizza page |
 | Animated Enemies | Quaternius | unconfirmed, check Poly Pizza page |
 | Halloween Bits | Kay Lousberg | unconfirmed, check Poly Pizza page |
+| Mini Forest | Kenney | CC0 |
+| Minor Skilled - Good Dino Deeds | dotRianne | CC-BY |
+| Animated Dinosaur Bundle | Quaternius | unconfirmed, check Poly Pizza page |
+| Survival Pack | Quaternius | unconfirmed, check Poly Pizza page |
+| Weapons Pack 002 – In Case of Zombies | CreativeTrio | unconfirmed, check Poly Pizza page |
+| Witch cottage pack | 2x_Helix | CC-BY |
+| Animated Fish Bundle | Quaternius | unconfirmed, check Poly Pizza page |
+| Coffeehouse Lounge Pack | majesticmaje | CC-BY |
+| Basic VRC Pack | J-Toastie | CC-BY |
+| Urban Clutter | Superlink121 | CC-BY |
+| Concert Pack | iPoly3D | unconfirmed, check Poly Pizza page |
 
 Stream bio line:
 
-Models by MiniPoly, J-Toastie, dook and CreativeTechLab, via Poly Pizza
+Models by MiniPoly, J-Toastie, dook, CreativeTechLab, dotRianne, 2x_Helix, majesticmaje and Superlink121, via Poly Pizza

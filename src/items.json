@@ -446,18 +446,6 @@
     "pack": "Food Kit"
   },
   {
-    "id": "mincemeat-pie",
-    "name": "Mincemeat Pie",
-    "answers": [
-      "mincemeat pie",
-      "mince pie",
-      "pie"
-    ],
-    "difficulty": "hard",
-    "file": "food-kit/Mincemeat Pie.glb",
-    "pack": "Food Kit"
-  },
-  {
     "id": "alpaca",
     "name": "Alpaca",
     "answers": [
@@ -708,8 +696,7 @@
     "name": "Chicken Leg",
     "answers": [
       "chicken leg",
-      "drumstick",
-      "chicken"
+      "drumstick"
     ],
     "difficulty": "easy",
     "file": "ultimate-food-pack/Chicken Leg.glb",
@@ -956,38 +943,6 @@
     "pack": "Food Kit"
   },
   {
-    "id": "salad",
-    "name": "Salad",
-    "answers": [
-      "salad"
-    ],
-    "difficulty": "medium",
-    "file": "food-kit/Salad.glb",
-    "pack": "Food Kit"
-  },
-  {
-    "id": "chocolate-bar",
-    "name": "Chocolate Bar",
-    "answers": [
-      "chocolate bar",
-      "chocolate"
-    ],
-    "difficulty": "medium",
-    "file": "food-kit/Chocolate.glb",
-    "pack": "Food Kit"
-  },
-  {
-    "id": "rice-ball",
-    "name": "Rice Ball",
-    "answers": [
-      "rice ball",
-      "onigiri"
-    ],
-    "difficulty": "medium",
-    "file": "food-kit/Rice Ball.glb",
-    "pack": "Food Kit"
-  },
-  {
     "id": "cabbage",
     "name": "Cabbage",
     "answers": [
@@ -1036,16 +991,6 @@
     ],
     "difficulty": "medium",
     "file": "food-kit/Coconut Half.glb",
-    "pack": "Food Kit"
-  },
-  {
-    "id": "pizza-box",
-    "name": "Pizza Box",
-    "answers": [
-      "pizza box"
-    ],
-    "difficulty": "medium",
-    "file": "food-kit/Pizza Box.glb",
     "pack": "Food Kit"
   },
   {
@@ -1118,17 +1063,6 @@
     ],
     "difficulty": "medium",
     "file": "office-pack/Calendar.glb",
-    "pack": "The Office Pack"
-  },
-  {
-    "id": "cardboard-box",
-    "name": "Cardboard Box",
-    "answers": [
-      "cardboard box",
-      "box"
-    ],
-    "difficulty": "medium",
-    "file": "office-pack/Cardboard Box.glb",
     "pack": "The Office Pack"
   },
   {
@@ -1217,17 +1151,6 @@
     ],
     "difficulty": "medium",
     "file": "office-pack/Table Tennis Paddle.glb",
-    "pack": "The Office Pack"
-  },
-  {
-    "id": "tissue-box",
-    "name": "Tissue Box",
-    "answers": [
-      "tissue box",
-      "tissues"
-    ],
-    "difficulty": "medium",
-    "file": "office-pack/Tissue Box.glb",
     "pack": "The Office Pack"
   },
   {
@@ -1328,17 +1251,6 @@
     "pack": "Ultimate House Interior Pack"
   },
   {
-    "id": "houseplant",
-    "name": "Houseplant",
-    "answers": [
-      "houseplant",
-      "plant"
-    ],
-    "difficulty": "medium",
-    "file": "ultimate-house-interior-pack/Houseplant.glb",
-    "pack": "Ultimate House Interior Pack"
-  },
-  {
     "id": "bunk-bed",
     "name": "Bunk Bed",
     "answers": [
@@ -1391,70 +1303,6 @@
     "pack": "Ultimate House Interior Pack"
   },
   {
-    "id": "salt-shaker",
-    "name": "Salt Shaker",
-    "answers": [
-      "salt shaker",
-      "salt"
-    ],
-    "difficulty": "hard",
-    "file": "food-kit/Shaker Salt.glb",
-    "pack": "Food Kit"
-  },
-  {
-    "id": "soy-sauce",
-    "name": "Soy Sauce",
-    "answers": [
-      "soy sauce",
-      "soy"
-    ],
-    "difficulty": "hard",
-    "file": "food-kit/Soy.glb",
-    "pack": "Food Kit"
-  },
-  {
-    "id": "ketchup",
-    "name": "Ketchup",
-    "answers": [
-      "ketchup",
-      "ketchup bottle"
-    ],
-    "difficulty": "hard",
-    "file": "food-kit/Bottle Ketchup.glb",
-    "pack": "Food Kit"
-  },
-  {
-    "id": "mustard",
-    "name": "Mustard",
-    "answers": [
-      "mustard",
-      "mustard bottle"
-    ],
-    "difficulty": "hard",
-    "file": "food-kit/Bottle Musterd.glb",
-    "pack": "Food Kit"
-  },
-  {
-    "id": "peanut-butter",
-    "name": "Peanut Butter",
-    "answers": [
-      "peanut butter"
-    ],
-    "difficulty": "hard",
-    "file": "food-kit/Peanut Butter.glb",
-    "pack": "Food Kit"
-  },
-  {
-    "id": "honey",
-    "name": "Honey",
-    "answers": [
-      "honey"
-    ],
-    "difficulty": "hard",
-    "file": "food-kit/Honey.glb",
-    "pack": "Food Kit"
-  },
-  {
     "id": "knife-block",
     "name": "Knife Block",
     "answers": [
@@ -1476,16 +1324,6 @@
     "pack": "Food Kit"
   },
   {
-    "id": "pudding",
-    "name": "Pudding",
-    "answers": [
-      "pudding"
-    ],
-    "difficulty": "hard",
-    "file": "food-kit/Pudding.glb",
-    "pack": "Food Kit"
-  },
-  {
     "id": "turnip",
     "name": "Turnip",
     "answers": [
@@ -1494,62 +1332,6 @@
     "difficulty": "hard",
     "file": "ultimate-food-pack/Turnip.glb",
     "pack": "Ultimate Food Pack"
-  },
-  {
-    "id": "air-vent",
-    "name": "Air Vent",
-    "answers": [
-      "air vent",
-      "vent"
-    ],
-    "difficulty": "hard",
-    "file": "office-pack/Air Vent.glb",
-    "pack": "The Office Pack"
-  },
-  {
-    "id": "power-outlet",
-    "name": "Power Outlet",
-    "answers": [
-      "power outlet",
-      "outlet",
-      "socket"
-    ],
-    "difficulty": "hard",
-    "file": "office-pack/Electrical outlet.glb",
-    "pack": "The Office Pack"
-  },
-  {
-    "id": "binder",
-    "name": "Binder",
-    "answers": [
-      "binder"
-    ],
-    "difficulty": "hard",
-    "file": "office-pack/Binder.glb",
-    "pack": "The Office Pack"
-  },
-  {
-    "id": "blinds",
-    "name": "Blinds",
-    "answers": [
-      "blinds",
-      "window blinds"
-    ],
-    "difficulty": "hard",
-    "file": "office-pack/Window Blinds.glb",
-    "pack": "The Office Pack"
-  },
-  {
-    "id": "exit-sign",
-    "name": "Exit Sign",
-    "answers": [
-      "exit sign",
-      "fire exit sign",
-      "fire exit"
-    ],
-    "difficulty": "hard",
-    "file": "office-pack/Fire Exit Sign.glb",
-    "pack": "The Office Pack"
   },
   {
     "id": "shield",
@@ -1613,18 +1395,6 @@
     ],
     "difficulty": "medium",
     "file": "fantasy-bundle/Armor.glb",
-    "pack": "Fantasy Bundle"
-  },
-  {
-    "id": "potion",
-    "name": "Potion",
-    "answers": [
-      "potion",
-      "red potion",
-      "potion bottle"
-    ],
-    "difficulty": "medium",
-    "file": "fantasy-bundle/Potion Red.glb",
     "pack": "Fantasy Bundle"
   },
   {
@@ -1722,18 +1492,6 @@
     "pack": "Ultimate RPG Items Bundle"
   },
   {
-    "id": "coin-pouch",
-    "name": "Coin Pouch",
-    "answers": [
-      "coin pouch",
-      "money bag",
-      "pouch"
-    ],
-    "difficulty": "medium",
-    "file": "ultimate-rpg-items-bundle/Coin Pouch.glb",
-    "pack": "Ultimate RPG Items Bundle"
-  },
-  {
     "id": "dagger",
     "name": "Dagger",
     "answers": [
@@ -1741,17 +1499,6 @@
     ],
     "difficulty": "medium",
     "file": "ultimate-rpg-items-bundle/Dagger.glb",
-    "pack": "Ultimate RPG Items Bundle"
-  },
-  {
-    "id": "glove",
-    "name": "Glove",
-    "answers": [
-      "glove",
-      "gauntlet"
-    ],
-    "difficulty": "medium",
-    "file": "ultimate-rpg-items-bundle/Glove.glb",
     "pack": "Ultimate RPG Items Bundle"
   },
   {
@@ -1796,18 +1543,6 @@
     ],
     "difficulty": "medium",
     "file": "ultimate-rpg-items-bundle/Snowflake.glb",
-    "pack": "Ultimate RPG Items Bundle"
-  },
-  {
-    "id": "crystal",
-    "name": "Crystal",
-    "answers": [
-      "crystal",
-      "gem",
-      "mineral"
-    ],
-    "difficulty": "hard",
-    "file": "ultimate-rpg-items-bundle/Mineral.glb",
     "pack": "Ultimate RPG Items Bundle"
   },
   {
@@ -1907,27 +1642,6 @@
     "pack": "Ultimate Platformer Pack"
   },
   {
-    "id": "spring",
-    "name": "Spring",
-    "answers": [
-      "spring",
-      "coil"
-    ],
-    "difficulty": "medium",
-    "file": "ultimate-platformer-pack/Spring.glb",
-    "pack": "Ultimate Platformer Pack"
-  },
-  {
-    "id": "arrow-sign",
-    "name": "Arrow Sign",
-    "answers": [
-      "arrow sign"
-    ],
-    "difficulty": "medium",
-    "file": "ultimate-platformer-pack/Arrow Sign.glb",
-    "pack": "Ultimate Platformer Pack"
-  },
-  {
     "id": "saw-blade",
     "name": "Saw Blade",
     "answers": [
@@ -1936,27 +1650,6 @@
     ],
     "difficulty": "hard",
     "file": "ultimate-platformer-pack/Saw Blade.glb",
-    "pack": "Ultimate Platformer Pack"
-  },
-  {
-    "id": "spikes",
-    "name": "Spikes",
-    "answers": [
-      "spikes",
-      "spike"
-    ],
-    "difficulty": "hard",
-    "file": "ultimate-platformer-pack/Spikes.glb",
-    "pack": "Ultimate Platformer Pack"
-  },
-  {
-    "id": "tower",
-    "name": "Tower",
-    "answers": [
-      "tower"
-    ],
-    "difficulty": "hard",
-    "file": "ultimate-platformer-pack/Tower.glb",
     "pack": "Ultimate Platformer Pack"
   },
   {
@@ -1977,18 +1670,6 @@
     ],
     "difficulty": "hard",
     "file": "ultimate-platformer-pack/Spiky Ball.glb",
-    "pack": "Ultimate Platformer Pack"
-  },
-  {
-    "id": "brick-block",
-    "name": "Brick Block",
-    "answers": [
-      "brick block",
-      "bricks",
-      "brick"
-    ],
-    "difficulty": "hard",
-    "file": "ultimate-platformer-pack/Cube Bricks.glb",
     "pack": "Ultimate Platformer Pack"
   },
   {
@@ -2080,56 +1761,779 @@
     "pack": "Halloween Bits"
   },
   {
-    "id": "crypt",
-    "name": "Crypt",
+    "id": "tent",
+    "name": "Tent",
     "answers": [
-      "crypt",
-      "mausoleum"
+      "tent"
     ],
-    "difficulty": "hard",
-    "file": "halloween-bits/Crypt.glb",
-    "pack": "Halloween Bits"
+    "difficulty": "easy",
+    "file": "mini-forest/tent.glb",
+    "pack": "Mini Forest"
   },
   {
-    "id": "shrine",
-    "name": "Shrine",
+    "id": "archery-target",
+    "name": "Archery Target",
     "answers": [
-      "shrine"
+      "archery target",
+      "target",
+      "bullseye"
     ],
-    "difficulty": "hard",
-    "file": "halloween-bits/Shrine.glb",
-    "pack": "Halloween Bits"
+    "difficulty": "medium",
+    "file": "mini-forest/target.glb",
+    "pack": "Mini Forest"
   },
   {
-    "id": "gate",
-    "name": "Gate",
+    "id": "archer",
+    "name": "Archer",
     "answers": [
-      "gate",
-      "arch gate"
+      "archer",
+      "robin hood"
     ],
-    "difficulty": "hard",
-    "file": "halloween-bits/Arch Gate.glb",
-    "pack": "Halloween Bits"
+    "difficulty": "medium",
+    "file": "mini-forest/character-archer.glb",
+    "pack": "Mini Forest"
   },
   {
-    "id": "lamp-post",
-    "name": "Lamp Post",
+    "id": "rope-fence",
+    "name": "Rope Fence",
     "answers": [
-      "lamp post",
-      "post lantern"
+      "rope fence",
+      "fence"
     ],
     "difficulty": "hard",
-    "file": "halloween-bits/Post Lantern.glb",
-    "pack": "Halloween Bits"
+    "file": "mini-forest/fence.glb",
+    "pack": "Mini Forest"
   },
   {
-    "id": "skull-candle",
-    "name": "Skull Candle",
+    "id": "t-rex",
+    "name": "T-Rex",
     "answers": [
-      "skull candle"
+      "t-rex",
+      "trex",
+      "t rex",
+      "tyrannosaurus",
+      "tyrannosaurus rex"
+    ],
+    "difficulty": "medium",
+    "file": "animated-dinosaur-bundle/T-Rex.glb",
+    "pack": "Animated Dinosaur Bundle"
+  },
+  {
+    "id": "triceratops",
+    "name": "Triceratops",
+    "answers": [
+      "triceratops"
+    ],
+    "difficulty": "medium",
+    "file": "animated-dinosaur-bundle/Triceratops.glb",
+    "pack": "Animated Dinosaur Bundle"
+  },
+  {
+    "id": "stegosaurus",
+    "name": "Stegosaurus",
+    "answers": [
+      "stegosaurus"
+    ],
+    "difficulty": "medium",
+    "file": "animated-dinosaur-bundle/Stegosaurus.glb",
+    "pack": "Animated Dinosaur Bundle"
+  },
+  {
+    "id": "shark",
+    "name": "Shark",
+    "answers": [
+      "shark"
+    ],
+    "difficulty": "easy",
+    "file": "animated-fish-bundle/Shark.glb",
+    "pack": "Animated Fish Bundle"
+  },
+  {
+    "id": "whale",
+    "name": "Whale",
+    "answers": [
+      "whale"
+    ],
+    "difficulty": "easy",
+    "file": "animated-fish-bundle/Whale.glb",
+    "pack": "Animated Fish Bundle"
+  },
+  {
+    "id": "dolphin",
+    "name": "Dolphin",
+    "answers": [
+      "dolphin"
+    ],
+    "difficulty": "easy",
+    "file": "animated-fish-bundle/Dolphin.glb",
+    "pack": "Animated Fish Bundle"
+  },
+  {
+    "id": "cat",
+    "name": "Cat",
+    "answers": [
+      "cat"
+    ],
+    "difficulty": "easy",
+    "file": "dino-deeds/Cat.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "duck",
+    "name": "Duck",
+    "answers": [
+      "duck"
+    ],
+    "difficulty": "easy",
+    "file": "dino-deeds/Duck.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "pug",
+    "name": "Pug",
+    "answers": [
+      "pug"
+    ],
+    "difficulty": "medium",
+    "file": "dino-deeds/Characters Pug.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "german-shepherd",
+    "name": "German Shepherd",
+    "answers": [
+      "german shepherd",
+      "alsatian"
+    ],
+    "difficulty": "medium",
+    "file": "dino-deeds/German Shepard.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "fire-truck",
+    "name": "Fire Truck",
+    "answers": [
+      "fire truck",
+      "fire engine"
+    ],
+    "difficulty": "easy",
+    "file": "dino-deeds/Fire Truck.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "dump-truck",
+    "name": "Dump Truck",
+    "answers": [
+      "dump truck",
+      "dump trunk",
+      "tipper truck"
+    ],
+    "difficulty": "medium",
+    "file": "dino-deeds/Dump truck.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "forklift",
+    "name": "Forklift",
+    "answers": [
+      "forklift",
+      "fork lift"
+    ],
+    "difficulty": "medium",
+    "file": "dino-deeds/Forklift.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "crane",
+    "name": "Crane",
+    "answers": [
+      "crane",
+      "construction crane"
     ],
     "difficulty": "hard",
-    "file": "halloween-bits/Skull Candle.glb",
-    "pack": "Halloween Bits"
+    "file": "dino-deeds/Crane.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "boat",
+    "name": "Boat",
+    "answers": [
+      "boat",
+      "rowboat",
+      "canoe"
+    ],
+    "difficulty": "medium",
+    "file": "dino-deeds/Boat.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "fountain",
+    "name": "Fountain",
+    "answers": [
+      "fountain",
+      "water fountain"
+    ],
+    "difficulty": "hard",
+    "file": "dino-deeds/Fountain.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "house",
+    "name": "House",
+    "answers": [
+      "house",
+      "home"
+    ],
+    "difficulty": "easy",
+    "file": "dino-deeds/House.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "tennis-ball",
+    "name": "Tennis Ball",
+    "answers": [
+      "tennis ball"
+    ],
+    "difficulty": "medium",
+    "file": "dino-deeds/Tennis ball.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "toolbox",
+    "name": "Toolbox",
+    "answers": [
+      "toolbox",
+      "tool box"
+    ],
+    "difficulty": "medium",
+    "file": "dino-deeds/Toolbox.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "food-truck",
+    "name": "Food Truck",
+    "answers": [
+      "food truck",
+      "sushi truck"
+    ],
+    "difficulty": "hard",
+    "file": "dino-deeds/Sushi Truck.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "seesaw",
+    "name": "Seesaw",
+    "answers": [
+      "seesaw",
+      "see saw",
+      "see-saw",
+      "teeter totter"
+    ],
+    "difficulty": "hard",
+    "file": "dino-deeds/Seasaw.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "chain",
+    "name": "Chain",
+    "answers": [
+      "chain",
+      "link chain"
+    ],
+    "difficulty": "hard",
+    "file": "dino-deeds/Link Chain.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "campfire",
+    "name": "Campfire",
+    "answers": [
+      "campfire",
+      "bonfire",
+      "camp fire"
+    ],
+    "difficulty": "easy",
+    "file": "survival-pack/Bonfire.glb",
+    "pack": "Survival Pack"
+  },
+  {
+    "id": "compass",
+    "name": "Compass",
+    "answers": [
+      "compass"
+    ],
+    "difficulty": "medium",
+    "file": "survival-pack/Compass.glb",
+    "pack": "Survival Pack"
+  },
+  {
+    "id": "first-aid-kit",
+    "name": "First Aid Kit",
+    "answers": [
+      "first aid kit",
+      "first aid box"
+    ],
+    "difficulty": "medium",
+    "file": "survival-pack/First Aid Kit.glb",
+    "pack": "Survival Pack"
+  },
+  {
+    "id": "radio",
+    "name": "Radio",
+    "answers": [
+      "radio"
+    ],
+    "difficulty": "medium",
+    "file": "survival-pack/Radio.glb",
+    "pack": "Survival Pack"
+  },
+  {
+    "id": "flashlight",
+    "name": "Flashlight",
+    "answers": [
+      "flashlight",
+      "torch"
+    ],
+    "difficulty": "medium",
+    "file": "survival-pack/Torch.glb",
+    "pack": "Survival Pack"
+  },
+  {
+    "id": "log",
+    "name": "Log",
+    "answers": [
+      "log",
+      "wood log"
+    ],
+    "difficulty": "medium",
+    "file": "survival-pack/Wood Log.glb",
+    "pack": "Survival Pack"
+  },
+  {
+    "id": "matchbox",
+    "name": "Matchbox",
+    "answers": [
+      "matchbox",
+      "box of matches",
+      "match box"
+    ],
+    "difficulty": "hard",
+    "file": "survival-pack/Matchbox.glb",
+    "pack": "Survival Pack"
+  },
+  {
+    "id": "gas-can",
+    "name": "Gas Can",
+    "answers": [
+      "gas can",
+      "jerry can",
+      "fuel can",
+      "petrol can"
+    ],
+    "difficulty": "medium",
+    "file": "survival-pack/Gas Can.glb",
+    "pack": "Survival Pack"
+  },
+  {
+    "id": "bear-trap",
+    "name": "Bear Trap",
+    "answers": [
+      "bear trap"
+    ],
+    "difficulty": "hard",
+    "file": "survival-pack/Bear Trap.glb",
+    "pack": "Survival Pack"
+  },
+  {
+    "id": "battery",
+    "name": "Battery",
+    "answers": [
+      "battery"
+    ],
+    "difficulty": "medium",
+    "file": "survival-pack/Battery.glb",
+    "pack": "Survival Pack"
+  },
+  {
+    "id": "wrench",
+    "name": "Wrench",
+    "answers": [
+      "wrench",
+      "spanner"
+    ],
+    "difficulty": "medium",
+    "file": "weapons-pack-002/Wrench.glb",
+    "pack": "Weapons Pack 002 – In Case of Zombies"
+  },
+  {
+    "id": "pickaxe",
+    "name": "Pickaxe",
+    "answers": [
+      "pickaxe",
+      "pick axe"
+    ],
+    "difficulty": "medium",
+    "file": "weapons-pack-002/Pickaxe.glb",
+    "pack": "Weapons Pack 002 – In Case of Zombies"
+  },
+  {
+    "id": "sledgehammer",
+    "name": "Sledgehammer",
+    "answers": [
+      "sledgehammer",
+      "sledge hammer"
+    ],
+    "difficulty": "medium",
+    "file": "weapons-pack-002/Sledge Hammer.glb",
+    "pack": "Weapons Pack 002 – In Case of Zombies"
+  },
+  {
+    "id": "nunchucks",
+    "name": "Nunchucks",
+    "answers": [
+      "nunchucks",
+      "nunchaku"
+    ],
+    "difficulty": "hard",
+    "file": "weapons-pack-002/Nunchucks.glb",
+    "pack": "Weapons Pack 002 – In Case of Zombies"
+  },
+  {
+    "id": "quiver",
+    "name": "Quiver",
+    "answers": [
+      "quiver"
+    ],
+    "difficulty": "hard",
+    "file": "weapons-pack-002/Quiver.glb",
+    "pack": "Weapons Pack 002 – In Case of Zombies"
+  },
+  {
+    "id": "cauldron",
+    "name": "Cauldron",
+    "answers": [
+      "cauldron"
+    ],
+    "difficulty": "easy",
+    "file": "witch-cottage-pack/Cauldron.glb",
+    "pack": "Witch cottage pack"
+  },
+  {
+    "id": "wizard-hat",
+    "name": "Wizard Hat",
+    "answers": [
+      "wizard hat",
+      "witch hat"
+    ],
+    "difficulty": "easy",
+    "file": "witch-cottage-pack/Wizard hat.glb",
+    "pack": "Witch cottage pack"
+  },
+  {
+    "id": "venus-flytrap",
+    "name": "Venus Flytrap",
+    "answers": [
+      "venus flytrap",
+      "venus fly trap"
+    ],
+    "difficulty": "medium",
+    "file": "witch-cottage-pack/Venus flytrap.glb",
+    "pack": "Witch cottage pack"
+  },
+  {
+    "id": "watering-can",
+    "name": "Watering Can",
+    "answers": [
+      "watering can",
+      "water can"
+    ],
+    "difficulty": "medium",
+    "file": "witch-cottage-pack/Water Can.glb",
+    "pack": "Witch cottage pack"
+  },
+  {
+    "id": "lily-pad",
+    "name": "Lily Pad",
+    "answers": [
+      "lily pad",
+      "lilypad"
+    ],
+    "difficulty": "hard",
+    "file": "witch-cottage-pack/Lily pad.glb",
+    "pack": "Witch cottage pack"
+  },
+  {
+    "id": "cattail",
+    "name": "Cattail",
+    "answers": [
+      "cattail",
+      "cat tail",
+      "bulrush"
+    ],
+    "difficulty": "hard",
+    "file": "witch-cottage-pack/Cattail.glb",
+    "pack": "Witch cottage pack"
+  },
+  {
+    "id": "candle-lantern",
+    "name": "Candle Lantern",
+    "answers": [
+      "candle lantern"
+    ],
+    "difficulty": "hard",
+    "file": "witch-cottage-pack/Candle Lantern.glb",
+    "pack": "Witch cottage pack"
+  },
+  {
+    "id": "drum-set",
+    "name": "Drum Set",
+    "answers": [
+      "drum set",
+      "drum kit",
+      "drums"
+    ],
+    "difficulty": "medium",
+    "file": "coffeehouse-lounge-pack/Drum Set.glb",
+    "pack": "Coffeehouse Lounge Pack"
+  },
+  {
+    "id": "electric-guitar",
+    "name": "Electric Guitar",
+    "answers": [
+      "electric guitar",
+      "guitar"
+    ],
+    "difficulty": "easy",
+    "file": "coffeehouse-lounge-pack/Electric guitar.glb",
+    "pack": "Coffeehouse Lounge Pack"
+  },
+  {
+    "id": "microphone",
+    "name": "Microphone",
+    "answers": [
+      "microphone",
+      "mic"
+    ],
+    "difficulty": "easy",
+    "file": "coffeehouse-lounge-pack/Microphone.glb",
+    "pack": "Coffeehouse Lounge Pack"
+  },
+  {
+    "id": "headphones",
+    "name": "Headphones",
+    "answers": [
+      "headphones",
+      "headset"
+    ],
+    "difficulty": "easy",
+    "file": "coffeehouse-lounge-pack/Headphones.glb",
+    "pack": "Coffeehouse Lounge Pack"
+  },
+  {
+    "id": "pool-table",
+    "name": "Pool Table",
+    "answers": [
+      "pool table",
+      "billiards table",
+      "billiard table"
+    ],
+    "difficulty": "medium",
+    "file": "coffeehouse-lounge-pack/Pool Table.glb",
+    "pack": "Coffeehouse Lounge Pack"
+  },
+  {
+    "id": "cash-register",
+    "name": "Cash Register",
+    "answers": [
+      "cash register",
+      "till"
+    ],
+    "difficulty": "medium",
+    "file": "coffeehouse-lounge-pack/Cash register.glb",
+    "pack": "Coffeehouse Lounge Pack"
+  },
+  {
+    "id": "baseball-cap",
+    "name": "Baseball Cap",
+    "answers": [
+      "baseball cap",
+      "cap"
+    ],
+    "difficulty": "medium",
+    "file": "coffeehouse-lounge-pack/Baseball cap.glb",
+    "pack": "Coffeehouse Lounge Pack"
+  },
+  {
+    "id": "top-hat",
+    "name": "Top Hat",
+    "answers": [
+      "top hat"
+    ],
+    "difficulty": "medium",
+    "file": "coffeehouse-lounge-pack/Top hat.glb",
+    "pack": "Coffeehouse Lounge Pack"
+  },
+  {
+    "id": "guitar-amp",
+    "name": "Guitar Amp",
+    "answers": [
+      "guitar amp",
+      "amp",
+      "amplifier",
+      "guitar amplifier"
+    ],
+    "difficulty": "hard",
+    "file": "coffeehouse-lounge-pack/Guitar Amp.glb",
+    "pack": "Coffeehouse Lounge Pack"
+  },
+  {
+    "id": "speaker",
+    "name": "Speaker",
+    "answers": [
+      "speaker",
+      "loudspeaker"
+    ],
+    "difficulty": "medium",
+    "file": "coffeehouse-lounge-pack/Speaker.glb",
+    "pack": "Coffeehouse Lounge Pack"
+  },
+  {
+    "id": "dishwasher",
+    "name": "Dishwasher",
+    "answers": [
+      "dishwasher"
+    ],
+    "difficulty": "hard",
+    "file": "coffeehouse-lounge-pack/Dishwasher.glb",
+    "pack": "Coffeehouse Lounge Pack"
+  },
+  {
+    "id": "moka-pot",
+    "name": "Moka Pot",
+    "answers": [
+      "moka pot",
+      "espresso pot",
+      "stovetop espresso maker"
+    ],
+    "difficulty": "hard",
+    "file": "coffeehouse-lounge-pack/Espresso Pot.glb",
+    "pack": "Coffeehouse Lounge Pack"
+  },
+  {
+    "id": "broom",
+    "name": "Broom",
+    "answers": [
+      "broom"
+    ],
+    "difficulty": "medium",
+    "file": "coffeehouse-lounge-pack/Broom.glb",
+    "pack": "Coffeehouse Lounge Pack"
+  },
+  {
+    "id": "box-of-chocolates",
+    "name": "Box of Chocolates",
+    "answers": [
+      "box of chocolates",
+      "heart chocolates",
+      "chocolate box",
+      "heart box"
+    ],
+    "difficulty": "medium",
+    "file": "coffeehouse-lounge-pack/Heart Chocolates.glb",
+    "pack": "Coffeehouse Lounge Pack"
+  },
+  {
+    "id": "laptop",
+    "name": "Laptop",
+    "answers": [
+      "laptop",
+      "notebook computer"
+    ],
+    "difficulty": "easy",
+    "file": "basic-vrc-pack/Laptop.glb",
+    "pack": "Basic VRC Pack"
+  },
+  {
+    "id": "tires",
+    "name": "Tires",
+    "answers": [
+      "tires",
+      "tyres",
+      "tire",
+      "tyre"
+    ],
+    "difficulty": "medium",
+    "file": "urban-clutter/Tires.glb",
+    "pack": "Urban Clutter"
+  },
+  {
+    "id": "barrel",
+    "name": "Barrel",
+    "answers": [
+      "barrel",
+      "oil barrel",
+      "oil drum"
+    ],
+    "difficulty": "medium",
+    "file": "urban-clutter/Barrel.glb",
+    "pack": "Urban Clutter"
+  },
+  {
+    "id": "chicken",
+    "name": "Chicken",
+    "answers": [
+      "chicken",
+      "hen"
+    ],
+    "difficulty": "easy",
+    "file": "dino-deeds/Chicken.glb",
+    "pack": "Minor Skilled - Good Dino Deeds"
+  },
+  {
+    "id": "spotlight",
+    "name": "Spotlight",
+    "answers": [
+      "spotlight",
+      "stage light",
+      "spot light"
+    ],
+    "difficulty": "medium",
+    "file": "concert-pack/Spotlight.glb",
+    "pack": "Concert Pack"
+  },
+  {
+    "id": "moving-head-light",
+    "name": "Moving Head Light",
+    "answers": [
+      "moving head light",
+      "motorised spotlight",
+      "stage spotlight"
+    ],
+    "difficulty": "hard",
+    "file": "concert-pack/Motorised Spotlight.glb",
+    "pack": "Concert Pack"
+  },
+  {
+    "id": "crowd-barrier",
+    "name": "Crowd Barrier",
+    "answers": [
+      "crowd barrier",
+      "barricade",
+      "barrier"
+    ],
+    "difficulty": "hard",
+    "file": "concert-pack/Barricade.glb",
+    "pack": "Concert Pack"
+  },
+  {
+    "id": "concert-stage",
+    "name": "Concert Stage",
+    "answers": [
+      "concert stage",
+      "stage"
+    ],
+    "difficulty": "hard",
+    "file": "concert-pack/Concert Stage.glb",
+    "pack": "Concert Pack"
   }
 ]

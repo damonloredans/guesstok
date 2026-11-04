@@ -1,0 +1,127 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>guesstok - item review</title>
+<!-- Dev tool, not part of the game: shows every guess item with its picture, difficulty and accepted answers.
+     Tick "flag" on the ones that look wrong or vague, then "Copy flagged" and send the list. Open at /review.html -->
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<style>
+  body { margin: 0; background: #14181d; color: #e8eef2; font: 14px/1.35 system-ui, sans-serif; }
+  header { color: #e8eef2; position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 8px 12px; background: #0b0e11; border-bottom: 1px solid #2a3440; }
+  button, input { font: inherit; color: #e8eef2; background: #1d252d; border: 1px solid #3a4756; border-radius: 4px; padding: 4px 10px; }
+  button.on { background: #2b6a86; border-color: #5bc0eb; }
+  #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; padding: 12px; }
+  .tile { background: #1b222a; border: 1px solid #2a3440; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
+  .tile.flagged { border-color: #ff6b6b; background: #2a1a1d; }
+  .pic { aspect-ratio: 1; background: #000; display: flex; align-items: center; justify-content: center; color: #a6b2bd; }
+  .pic img { width: 100%; height: 100%; display: block; }
+  .info { padding: 6px 8px; display: flex; flex-direction: column; gap: 2px; }
+  .name { font-weight: 700; }
+  .tier { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: #b4c6d4; }
+  .answers { font-size: 13px; color: #c2e8b2; overflow-wrap: anywhere; }
+  .pack { font-size: 12px; color: #a6b4c0; }
+  label { font-size: 12px; display: flex; gap: 4px; align-items: center; cursor: pointer; }
+</style>
+<header>
+  <strong>Items</strong>
+  <span id="count"></span>
+  <button data-tier="all" class="on">All</button>
+  <button data-tier="easy">Easy</button>
+  <button data-tier="medium">Medium</button>
+  <button data-tier="hard">Hard</button>
+  <input id="q" placeholder="search name or answer">
+  <button id="onlyFlagged">Flagged only</button>
+  <button id="copy">Copy flagged (0)</button>
+  <span id="progress"></span>
+</header>
+<div id="grid"></div>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const items = await (await fetch('src/items.json')).json();
+const KEY = 'guesstok.review.flagged';
+let flagged = new Set();
+try { flagged = new Set(JSON.parse(localStorage.getItem(KEY) ?? '[]')); } catch {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify([...flagged])); } catch {} };
+
+const $ = (s) => document.querySelector(s);
+const grid = $('#grid');
+const tiles = new Map(); // item id -> tile element
+for (const it of items) {
+  const tile = document.createElement('div');
+  tile.className = 'tile';
+  tile.innerHTML = '<div class="pic">loading...</div><div class="info"><span class="name"></span><span class="tier"></span><span class="answers"></span><span class="pack"></span><label><input type="checkbox"> flag</label></div>';
+  tile.querySelector('.name').textContent = it.name;
+  tile.querySelector('.tier').textContent = it.difficulty;
+  tile.querySelector('.answers').textContent = 'answers: ' + it.answers.join(', ');
+  tile.querySelector('.pack').textContent = it.pack;
+  const box = tile.querySelector('input');
+  box.checked = flagged.has(it.id);
+  tile.classList.toggle('flagged', box.checked);
+  box.onchange = () => {
+    box.checked ? flagged.add(it.id) : flagged.delete(it.id);
+    tile.classList.toggle('flagged', box.checked);
+    save(); filter();
+  };
+  tiles.set(it.id, tile);
+  grid.append(tile);
+}
+
+let tier = 'all', onlyFlagged = false;
+function filter() {
+  const q = $('#q').value.trim().toLowerCase();
+  let shown = 0;
+  for (const it of items) {
+    const ok = (tier === 'all' || it.difficulty === tier)
+      && (!onlyFlagged || flagged.has(it.id))
+      && (!q || it.name.toLowerCase().includes(q) || it.answers.some((a) => a.includes(q)));
+    tiles.get(it.id).style.display = ok ? '' : 'none';
+    if (ok) shown++;
+  }
+  const n = (d) => items.filter((i) => i.difficulty === d).length;
+  $('#count').textContent = `${shown} shown of ${items.length} (easy ${n('easy')}, medium ${n('medium')}, hard ${n('hard')})`;
+  $('#copy').textContent = `Copy flagged (${flagged.size})`;
+}
+document.querySelectorAll('[data-tier]').forEach((b) => b.onclick = () => {
+  tier = b.dataset.tier;
+  document.querySelectorAll('[data-tier]').forEach((x) => x.classList.toggle('on', x === b));
+  filter();
+});
+$('#q').oninput = filter;
+$('#onlyFlagged').onclick = (e) => { onlyFlagged = !onlyFlagged; e.target.classList.toggle('on', onlyFlagged); filter(); };
+$('#copy').onclick = async () => {
+  const text = items.filter((i) => flagged.has(i.id)).map((i) => `${i.name} (${i.difficulty}, ${i.pack})`).join('\n');
+  try { await navigator.clipboard.writeText(text); $('#copy').textContent = 'Copied!'; setTimeout(filter, 1200); }
+  catch { prompt('Copy this list:', text); }
+};
+filter();
+
+// pictures: one renderer, each model drawn once and kept as an image (same look as the game's camera)
+const S = 220;
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setSize(S, S);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x000000);
+scene.add(new THREE.HemisphereLight(0xffffff, 0x444455, 2));
+const sun = new THREE.DirectionalLight(0xffffff, 2); sun.position.set(2, 3, 4); scene.add(sun);
+const cam = new THREE.PerspectiveCamera(40, 1, 0.1, 100); cam.position.set(0, 0.6, 3); cam.lookAt(0, 0, 0);
+const loader = new GLTFLoader();
+let done = 0;
+for (const it of items) {
+  const pic = tiles.get(it.id).querySelector('.pic');
+  try {
+    const gltf = await loader.loadAsync('models/' + it.file.split('/').map(encodeURIComponent).join('/'));
+    const m = gltf.scene; m.updateMatrixWorld(true);
+    const box = new THREE.Box3().setFromObject(m, true);
+    const size = box.getSize(new THREE.Vector3());
+    m.position.sub(box.getCenter(new THREE.Vector3()));
+    const p = new THREE.Group(); p.add(m); p.scale.setScalar(2 / (size.length() || 1)); p.rotation.y = 0.6;
+    scene.add(p); renderer.render(scene, cam);
+    const img = new Image(); img.src = renderer.domElement.toDataURL();
+    pic.replaceChildren(img);
+    scene.remove(p);
+  } catch { pic.textContent = 'could not load'; }
+  $('#progress').textContent = ++done < items.length ? `pictures ${done}/${items.length}` : 'all pictures loaded';
+}
+</script>

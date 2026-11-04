@@ -63,6 +63,8 @@ In a normal browser sound starts after the first click on the page. OBS and TikT
 
 A model that fails to load is skipped and the game picks another item.
 
+To check every item, open `http://localhost:8080/review.html`. It shows each item's picture, difficulty and accepted answers, and lets you flag the ones that look wrong or vague and copy the flagged list.
+
 ## Credits
 
 Model credits live in `src/credits.js` and `CREDITS.md`. CC-BY authors must also be credited in the stream bio (the line is at the bottom of `CREDITS.md`).
