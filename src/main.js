@@ -24,6 +24,10 @@ const safe = (fn) => (arg) => {
   try { fn(arg); } catch (err) { console.error(err); }
 };
 
+// ?scale=0.8 shrinks the game inside the window, leaving empty space around it (for a phone's cut-off edges)
+const scale = Number(new URLSearchParams(location.search).get('scale'));
+if (scale >= 0.3 && scale <= 1) document.querySelector('.frame').style.setProperty('--scale', scale);
+
 const root = document.getElementById('app');
 const bus = createBus();
 const ui = createUi(root, bus);

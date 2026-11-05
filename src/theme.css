@@ -15,7 +15,7 @@
   --guess-shadow: 0 0 6px var(--bg), 0 0 2px var(--bg);
 
   /* type: cqw is a percent of the 9:16 container width; max() keeps every size at 11px or more */
-  --font: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
+  --font: "Montserrat", system-ui, "Segoe UI", sans-serif;
   --text-s: max(11px, 3.4cqw);
   --text-m: max(13px, 4.4cqw);
   --text-l: max(16px, 6cqw);
@@ -39,7 +39,8 @@ body { display: flex; align-items: center; justify-content: center; }
    It is the query container, so cqw on main and everything inside is a percent of the 9:16 width
    (an element cannot query itself, which is why main is not the container). */
 .frame {
-  width: min(100vw, 100dvh * 9 / 16);
+  --scale: 0.9; /* share of the window the game fills; the rest is empty space around it. Change it with ?scale=0.8 */
+  width: calc(min(100vw, 100dvh * 9 / 16) * var(--scale));
   aspect-ratio: 9 / 16;
   container-type: inline-size;
 }

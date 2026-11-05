@@ -16,6 +16,8 @@ Open http://localhost:8080/ for the stream view. Open http://localhost:8080/?dev
 
 The round number keeps counting across page reloads (it is saved in the browser), so a long stream reads "Round 251". Add `?round=11` to the address to start from a particular round, for example to see a zoom round.
 
+To leave empty space around the game (for the edges a phone cuts off), add `?scale=0.8` to the address. The game stays 9:16 and fills that share of the window; the default is 0.9. Combine options with `&`, for example `?tiktok=1&scale=0.85`.
+
 `npm test` runs the unit tests.
 
 ## Connect to a TikTok LIVE
